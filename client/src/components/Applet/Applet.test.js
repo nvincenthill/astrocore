@@ -1,12 +1,12 @@
-import Enzyme from 'enzyme';
-// import sinon from 'sinon';
-import Adapter from 'enzyme-adapter-react-16';
+// import Enzyme from 'enzyme';
+// // import sinon from 'sinon';
+// import Adapter from 'enzyme-adapter-react-16';
 
-import Applet from './Applet';
+// import Applet from './Applet';
 
-Enzyme.configure({ adapter: new Adapter() });
+// Enzyme.configure({ adapter: new Adapter() });
 
-let wrapper;
+// let wrapper;
 
 describe('Applet', () => {
   it('should run a component level test', () => {
