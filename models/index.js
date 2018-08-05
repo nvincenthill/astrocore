@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-const dbURI = process.env.MONGODB_URI || "mongodb://localhost/chess-pro"
+const dbURI = process.env.MONGODB_URI || "mongodb://localhost/astrocore"
 
 mongoose.connect(dbURI);
 
