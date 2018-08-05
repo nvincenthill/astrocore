@@ -6,14 +6,17 @@ class Applet extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      isGamePlaying: false,
+      gameState: {
+        isGamePlaying: false,
+      },
     };
   }
 
   render() {
+    const { gameState } = this.state;
     return (
       <div className="game">
-        <Game />
+        <Game gameState={gameState} />
       </div>
     );
   }
