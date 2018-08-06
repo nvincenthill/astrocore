@@ -61,10 +61,16 @@ class Graph {
 
 const randomGraph = () => {
   const newGraph = new Graph();
+  const adjacencyMatrix = []
   const getRandomInt = max => Math.floor(Math.random() * Math.floor(max));
-  for (let i = 0; i < 100; i++) {
+  for (let i = 0; i < 20; i += 1) {
     // addNode(id, x, y, score, color)
-    newGraph.addNode(0, getRandomInt(1000), getRandomInt(1000), getRandomInt(40), '#ff0000');
+    newGraph.addNode(i, getRandomInt(1000), getRandomInt(1000), getRandomInt(40), '#ff0000');
+    for (let j = 0; j < adjacencyMatrix.length; j += 1) {
+      if (adjacencyMatrix[i][j] && i !== j) {
+        newGraph.addEdge(i, j);
+      }
+    }
   }
   return newGraph;
 };

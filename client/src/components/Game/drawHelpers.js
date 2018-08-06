@@ -13,13 +13,30 @@ const drawNode = (canvas, ctx, node) => {
   ctx.closePath();
 };
 
+const drawEdge = (canvas, ctx, startNode, endNode) => {
+  ctx.beginPath();
+  ctx.moveTo(0, 0);
+  ctx.lineTo(300, 150);
+  ctx.stroke();
+  ctx.strokeStyle = 'rgb(255, 255, 255)';
+  ctx.closePath();
+};
+
 const drawAllNodes = (graph, canvas, ctx) => {
   graph.forEachNode((element) => {
     drawNode(canvas, ctx, element);
   });
 };
 
+const drawAllEdges = (graph, canvas, ctx) => {
+  console.log(graph);
+  graph.forEachNode((element) => {
+    drawEdge(canvas, ctx, element);
+  });
+};
+
 module.exports = {
   drawNode,
   drawAllNodes,
+  drawAllEdges,
 };
