@@ -17,6 +17,9 @@ class Applet extends React.Component {
     return (
       <div className="game">
         <Game gameState={gameState} />
+        <h1 className="game-title">
+AstroCore
+        </h1>
       </div>
     );
   }

@@ -8,6 +8,17 @@ body {
   height: 100%;
   padding: 0;
   margin: 0;
+
+  --main-bg-color: #000e1d;
+  --main-font-color: #eee;
+  --second-font-color: #222;
+  --second-color: #0960bd;
+  --third-color: #429ffd;
+  --fourth-color: #f8c43a;
+  --fifth-color: #c93d1b;
+
+  background-color: var(--main-bg-color);
+  color: var(--main-font-color);
 }
 
 * {
@@ -33,9 +44,13 @@ body {
     grid-column-end: end;
     grid-row-start: last;
     grid-row-end: end;
-
-    background: black;
     margin: auto;
+  }
+
+  .game-title {
+    margin-top: 45%;
+    font-family: 'Orbitron', sans-serif;
+    font-size: 3rem;
   }
 }
 
