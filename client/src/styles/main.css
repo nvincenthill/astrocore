@@ -31,6 +31,10 @@ button:focus {
   cursor: pointer;
 }
 
+/***************************
+  Styles
+***************************/
+
 @media (min-width: 320px) {
   /* smartphones, iPhone, portrait 480x320 phones */
   .game {
@@ -51,6 +55,7 @@ button:focus {
     grid-row-start: last;
     grid-row-end: end;
     margin: auto;
+    z-index: 5;
   }
 
   .game-title {
