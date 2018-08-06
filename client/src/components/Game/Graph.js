@@ -6,10 +6,16 @@ class Graph {
     this.edges = [];
   }
 
-  addNode(id) {
-    const newNode = new Node(id);
+  addNode(id, x, y, score, color) {
+    const newNode = new Node(id, x, y, score, color);
+    newNode.id = id;
+    newNode.x = x;
+    newNode.y = y;
+    newNode.score = score;
+    newNode.color = color;
     this.nodes.push(newNode);
-    this.edges[newNode] = [];
+    this.edges[newNode.id] = [];
+    return newNode;
   }
 
   removeNode(id) {
@@ -30,16 +36,18 @@ class Graph {
     return isFound;
   }
 
-  addEdge() {
-    return this.nodes;
+  addEdge(fromNodeID, toNodeID) {
+    this.edges[fromNodeID].push(toNodeID);
+    this.edges[toNodeID].push(fromNodeID);
   }
 
-  removeEdge() {
-    return this.nodes;
+  removeEdge(fromNodeID, toNodeID) {
+    this.edges[fromNodeID].pop(toNodeID);
+    this.edges[toNodeID].pop(fromNodeID);
   }
 
-  hasEdge() {
-    return this.nodes;
+  hasEdge(fromNodeID, toNodeID) {
+    return this.edges[toNodeID].includes(fromNodeID);
   }
 
   forEachNode(cb) {
@@ -51,6 +59,17 @@ class Graph {
   }
 }
 
+const randomGraph = () => {
+  const newGraph = new Graph();
+  const getRandomInt = max => Math.floor(Math.random() * Math.floor(max));
+  for (let i = 0; i < 100; i++) {
+    // addNode(id, x, y, score, color)
+    newGraph.addNode(0, getRandomInt(1000), getRandomInt(1000), getRandomInt(40), '#ff0000');
+  }
+  return newGraph;
+};
+
 module.exports = {
   Graph,
+  randomGraph,
 };

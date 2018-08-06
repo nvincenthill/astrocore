@@ -1,8 +1,4 @@
-class Node {
-  constructor(id) {
-    this.id = id;
-  }
-}
+class Node {}
 
 module.exports = {
   Node,
