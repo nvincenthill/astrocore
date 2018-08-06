@@ -48,9 +48,12 @@ body {
   }
 
   .game-title {
-    margin-top: 45%;
+    margin-top: 40vh;
     font-family: 'Orbitron', sans-serif;
     font-size: 3rem;
+    color: var(--main-font-color);
+    text-shadow: 5px 5px 5px var(--second-font-color);
+    z-index: 4;
   }
 
   @keyframes move-twink-back {
