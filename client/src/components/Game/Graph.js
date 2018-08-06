@@ -47,7 +47,7 @@ class Graph {
   }
 
   forEachEdge(cb) {
-    Array.forEach(this.edges, cb);
+    this.edges.forEach(cb);
   }
 }
 

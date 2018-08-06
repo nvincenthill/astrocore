@@ -1,12 +1,15 @@
 import React from 'react';
 import { example } from '../../helpers';
+import { Graph } from './Graph';
+import { drawNode } from './drawHelpers';
 
 class Game extends React.Component {
   componentDidMount() {
     const canvas = document.getElementsByClassName('gameboard');
     const ctx = canvas[0].getContext('2d');
-    ctx.fillStyle = '#FF0000';
-    ctx.fillRect(0, 0, 150, 75);
+    const newGraph = new Graph();
+    const newNode = newGraph.addNode(0);
+    drawNode(canvas, ctx, newNode);
     example();
   }
 
