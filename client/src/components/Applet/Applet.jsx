@@ -20,6 +20,9 @@ class Applet extends React.Component {
         <h1 className="game-title">
 AstroCore
         </h1>
+        <button type="button" className="game-button-start">
+          Start
+        </button>
         <div className="stars" />
         <div className="twinkling" />
         <div className="clouds" />
