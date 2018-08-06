@@ -12,17 +12,32 @@ class Applet extends React.Component {
     };
   }
 
+  handleGameStart() {
+    this.toggleGamePlaying();
+  }
+
+  toggleGamePlaying() {
+    const { gameState } = this.state;
+    gameState.isGamePlaying = !gameState.isGamePlaying;
+    this.setState({ gameState });
+  }
+
   render() {
+    const startButton = (
+      <React.Fragment>
+        <h1 className="game-title">
+AstroCore
+        </h1>
+        <button type="button" className="game-button-start" onClick={() => this.handleGameStart()}>
+          Start
+        </button>
+      </React.Fragment>
+    );
     const { gameState } = this.state;
     return (
       <div className="game">
         <Game gameState={gameState} />
-        <h1 className="game-title">
-AstroCore
-        </h1>
-        <button type="button" className="game-button-start">
-          Start
-        </button>
+        {gameState.isGamePlaying ? null : startButton}
         <div className="stars" />
         <div className="twinkling" />
         <div className="clouds" />
