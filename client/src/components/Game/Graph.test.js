@@ -12,6 +12,19 @@ describe('Graph', () => {
     expect(typeof graph.forEachNode).toBe('function');
     expect(typeof graph.forEachEdge).toBe('function');
   });
+
+  test('should store ids as nodes that were inserted', () => {
+    const graph = new Graph('example');
+    graph.addNode(1);
+    expect(graph.hasNode(1)).toBe(true);
+  });
+
+  test('should be able to remove nodes', () => {
+    const graph = new Graph('example');
+    graph.addNode(2);
+    graph.removeNode(2);
+    expect(graph.hasNode(2)).toBe(false);
+  });
 });
 
 /*

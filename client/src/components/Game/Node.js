@@ -1,8 +1,8 @@
 class Node {
-  constructor() {
+  constructor(value) {
     this.x = null;
     this.y = null;
-    this.score = null;
+    this.value = value;
     this.id = null;
   }
 
