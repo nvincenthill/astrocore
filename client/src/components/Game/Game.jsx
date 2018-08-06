@@ -1,5 +1,4 @@
 import React from 'react';
-import { example } from '../../helpers';
 import { Graph } from './Graph';
 import { drawNode } from './drawHelpers';
 
@@ -10,14 +9,13 @@ class Game extends React.Component {
     const newGraph = new Graph();
     const newNode = newGraph.addNode(0);
     drawNode(canvas, ctx, newNode);
-    example();
   }
 
   render() {
     return (
       <canvas
-        width={window.innerWidth - 16}
-        height={window.innerHeight - 16}
+        width={window.innerWidth - window.innerWidth * 0.05}
+        height={window.innerHeight - window.innerHeight * 0.05}
         className="gameboard"
       />
     );

@@ -9,7 +9,7 @@ class Graph {
   addNode(id) {
     const newNode = new Node(id);
     this.nodes.push(newNode);
-    this.edges[newNode] = [];
+    this.edges[newNode.id] = [];
   }
 
   removeNode(id) {
@@ -30,16 +30,18 @@ class Graph {
     return isFound;
   }
 
-  addEdge() {
-    return this.nodes;
+  addEdge(fromNodeID, toNodeID) {
+    this.edges[fromNodeID].push(toNodeID);
+    this.edges[toNodeID].push(fromNodeID);
   }
 
-  removeEdge() {
-    return this.nodes;
+  removeEdge(fromNodeID, toNodeID) {
+    this.edges[fromNodeID].pop(toNodeID);
+    this.edges[toNodeID].pop(fromNodeID);
   }
 
-  hasEdge() {
-    return this.nodes;
+  hasEdge(fromNodeID, toNodeID) {
+    return this.edges[toNodeID].includes(fromNodeID);
   }
 
   forEachNode(cb) {
