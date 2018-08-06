@@ -6,17 +6,28 @@ class Graph {
     this.edges = [];
   }
 
-  addNode() {
-    const newNode = new Node();
+  addNode(id) {
+    const newNode = new Node(id);
     this.nodes.push(newNode);
+    this.edges[newNode] = [];
   }
 
-  removeNode() {
-    return this.nodes;
+  removeNode(id) {
+    this.nodes.forEach((element) => {
+      if (id === element.id) {
+        this.nodes.pop(element);
+      }
+    });
   }
 
-  hasNode() {
-    return this.nodes;
+  hasNode(id) {
+    let isFound = false;
+    this.nodes.forEach((element) => {
+      if (id === element.id) {
+        isFound = true;
+      }
+    });
+    return isFound;
   }
 
   addEdge() {
@@ -32,11 +43,11 @@ class Graph {
   }
 
   forEachNode(cb) {
-    return cb(this.nodes);
+    this.nodes.forEach(cb);
   }
 
   forEachEdge(cb) {
-    return cb(this.nodes);
+    this.edges.forEach(cb);
   }
 }
 
