@@ -8,11 +8,6 @@ class Graph {
 
   addNode(id, x, y, score, color) {
     const newNode = new Node(id, x, y, score, color);
-    newNode.id = id;
-    newNode.x = x;
-    newNode.y = y;
-    newNode.score = score;
-    newNode.color = color;
     this.nodes.push(newNode);
     this.edges[newNode.id] = [];
     return newNode;
@@ -61,17 +56,26 @@ class Graph {
 
 const randomGraph = () => {
   const newGraph = new Graph();
-  const adjacencyMatrix = []
+  const adjacencyMatrix = [
+    [true, true, true, true],
+    [false, false, false, false],
+    [false, false, true, true],
+    [true, true, true, true],
+  ];
   const getRandomInt = max => Math.floor(Math.random() * Math.floor(max));
-  for (let i = 0; i < 20; i += 1) {
+  for (let i = 0; i < 4; i += 1) {
     // addNode(id, x, y, score, color)
-    newGraph.addNode(i, getRandomInt(1000), getRandomInt(1000), getRandomInt(40), '#ff0000');
+    newGraph.addNode(i, getRandomInt(window.innerWidth), getRandomInt(window.innerHeight), getRandomInt(40), '#ff0000');
+  }
+
+  for (let i = 0; i < 4; i += 1) {
     for (let j = 0; j < adjacencyMatrix.length; j += 1) {
       if (adjacencyMatrix[i][j] && i !== j) {
         newGraph.addEdge(i, j);
       }
     }
   }
+
   return newGraph;
 };
 

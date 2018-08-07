@@ -40,7 +40,7 @@ AstroCore
         {gameState.isGamePlaying ? null : startButton}
         <div className="stars" />
         <div className="twinkling" />
-        <div className="clouds" />
+        {/* <div className="clouds" /> */}
       </div>
     );
   }

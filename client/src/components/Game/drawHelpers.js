@@ -3,7 +3,7 @@ const drawNode = (canvas, ctx, node) => {
   ctx.arc(node.x, node.y, node.score, 0, 2 * Math.PI);
   ctx.strokeStyle = node.color;
   ctx.stroke();
-  ctx.fillStyle = node.color;
+  ctx.fillStyle = 'black';
   ctx.fill();
   ctx.shadowBlur = 25;
   ctx.shadowColor = node.color;
@@ -15,8 +15,8 @@ const drawNode = (canvas, ctx, node) => {
 
 const drawEdge = (canvas, ctx, startNode, endNode) => {
   ctx.beginPath();
-  ctx.moveTo(0, 0);
-  ctx.lineTo(300, 150);
+  ctx.moveTo(startNode.x, startNode.y);
+  ctx.lineTo(endNode.x, endNode.y);
   ctx.stroke();
   ctx.strokeStyle = 'rgb(255, 255, 255)';
   ctx.closePath();
@@ -29,9 +29,13 @@ const drawAllNodes = (graph, canvas, ctx) => {
 };
 
 const drawAllEdges = (graph, canvas, ctx) => {
-  console.log(graph);
-  graph.forEachNode((element) => {
-    drawEdge(canvas, ctx, element);
+  graph.edges.forEach((edgeList, startNodeId) => {
+    const startNode = graph.nodes[startNodeId];
+    edgeList.forEach((endNodeId) => {
+      if (endNodeId > startNodeId) {
+        drawEdge(canvas, ctx, startNode, graph.nodes[endNodeId]);
+      }
+    });
   });
 };
 
