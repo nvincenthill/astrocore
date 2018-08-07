@@ -7,8 +7,8 @@ class Game extends React.Component {
     const canvas = document.getElementsByClassName('gameboard');
     const ctx = canvas[0].getContext('2d');
     const sampleGraph = Graph.randomGraph();
-    Draw.drawAllEdges(sampleGraph, canvas, ctx);
-    Draw.drawAllNodes(sampleGraph, canvas, ctx);
+    Draw.drawAllEdges(sampleGraph, ctx);
+    Draw.drawAllNodes(sampleGraph, ctx);
   }
 
   render() {
