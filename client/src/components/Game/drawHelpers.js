@@ -1,6 +1,7 @@
 const drawNode = (ctx, node) => {
   ctx.beginPath();
-  ctx.arc(node.x, node.y, node.score, 0, 2 * Math.PI);
+  const radius = 20 + node.score / 1.6;
+  ctx.arc(node.x, node.y, radius, 0, 2 * Math.PI);
   ctx.fillStyle = 'goldenRod';
   ctx.fill();
   ctx.font = '20px Arial';
