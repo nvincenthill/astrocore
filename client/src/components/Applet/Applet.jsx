@@ -7,7 +7,7 @@ class Applet extends React.Component {
     super(props);
     this.state = {
       gameState: {
-        isGamePlaying: false,
+        isGamePlaying: true,
       },
     };
   }

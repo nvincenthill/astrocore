@@ -7,9 +7,9 @@ const drawNode = (ctx, node) => {
   ctx.fill();
   ctx.shadowBlur = 25;
   ctx.shadowColor = node.color;
-  ctx.font = '10px Arial';
-  ctx.fillStyle = '#ffffff';
-  ctx.fillText(node.score, node.x - 4.5, node.y + 4);
+  ctx.font = '20px Arial';
+  ctx.fillStyle = 'white';
+  ctx.fillText(node.score, node.x, node.y);
   ctx.closePath();
 };
 
