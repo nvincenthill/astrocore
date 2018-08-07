@@ -1,14 +1,12 @@
 const drawNode = (ctx, node) => {
   ctx.beginPath();
   ctx.arc(node.x, node.y, node.score, 0, 2 * Math.PI);
-  ctx.strokeStyle = node.color;
-  ctx.stroke();
-  ctx.fillStyle = 'black';
+  ctx.fillStyle = 'goldenRod';
   ctx.fill();
-  ctx.shadowBlur = 25;
-  ctx.shadowColor = node.color;
   ctx.font = '20px Arial';
   ctx.fillStyle = 'white';
+  ctx.textAlign = 'center';
+  ctx.textBaseline = 'middle';
   ctx.fillText(node.score, node.x, node.y);
   ctx.closePath();
 };
@@ -18,6 +16,7 @@ const drawEdge = (ctx, startNode, endNode) => {
   ctx.moveTo(startNode.x, startNode.y);
   ctx.lineTo(endNode.x, endNode.y);
   ctx.stroke();
+  ctx.lineWidth = 10;
   ctx.strokeStyle = 'rgb(255, 255, 255)';
   ctx.closePath();
 };

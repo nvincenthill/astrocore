@@ -58,15 +58,15 @@ const randomGraph = () => {
   const newGraph = new Graph();
   const adjacencyMatrix = [
     [false, true, false, false, false, false, false, false, false, false],
-    [false, false, false, false, false, false, false, false, false, false],
-    [false, false, false, false, false, false, false, false, false, false],
-    [false, false, false, false, false, false, false, false, false, false],
+    [false, false, true, false, false, false, false, false, false, false],
+    [false, false, false, true, false, false, false, false, false, false],
+    [false, false, false, false, true, false, false, false, false, false],
+    [false, false, false, false, false, true, true, false, false, false],
     [false, false, false, false, false, false, true, false, false, false],
-    [false, false, false, false, false, false, false, false, false, false],
-    [true, false, false, false, false, false, false, false, false, false],
-    [false, false, false, false, false, false, false, false, false, false],
-    [false, false, false, false, false, false, false, false, false, false],
-    [false, false, false, false, false, false, false, false, false, false],
+    [true, false, false, false, false, false, false, true, false, false],
+    [false, false, false, false, false, false, false, false, true, false],
+    [false, false, false, false, false, false, false, false, false, true],
+    [false, false, true, false, false, false, false, false, false, false],
   ];
   const getRandomInt = (min, max) => Math.floor(Math.random() * (max - min + 1)) + min;
   const num = 10;
@@ -74,9 +74,9 @@ const randomGraph = () => {
     // addNode(id, x, y, score, color)
     newGraph.addNode(
       i,
-      getRandomInt(150, window.innerWidth - 150),
-      getRandomInt(150, window.innerHeight - 150),
-      getRandomInt(5, 100),
+      getRandomInt(window.innerWidth * 0.1, window.innerWidth - window.innerWidth * 0.1),
+      getRandomInt(window.innerHeight * 0.1, window.innerHeight - window.innerHeight * 0.1),
+      getRandomInt(20, 100),
       '#ff0000',
     );
   }
