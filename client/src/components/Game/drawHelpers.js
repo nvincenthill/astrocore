@@ -1,37 +1,40 @@
-const drawNode = (canvas, ctx, node) => {
+const drawNode = (ctx, node) => {
   ctx.beginPath();
   ctx.arc(node.x, node.y, node.score, 0, 2 * Math.PI);
-  ctx.strokeStyle = node.color;
-  ctx.stroke();
-  ctx.fillStyle = node.color;
+  ctx.fillStyle = 'goldenRod';
   ctx.fill();
-  ctx.shadowBlur = 25;
-  ctx.shadowColor = node.color;
-  ctx.font = '10px Arial';
-  ctx.fillStyle = '#ffffff';
-  ctx.fillText(node.score, node.x - 4.5, node.y + 4);
+  ctx.font = '20px Arial';
+  ctx.fillStyle = 'white';
+  ctx.textAlign = 'center';
+  ctx.textBaseline = 'middle';
+  ctx.fillText(node.score, node.x, node.y);
   ctx.closePath();
 };
 
-const drawEdge = (canvas, ctx, startNode, endNode) => {
+const drawEdge = (ctx, startNode, endNode) => {
   ctx.beginPath();
-  ctx.moveTo(0, 0);
-  ctx.lineTo(300, 150);
+  ctx.moveTo(startNode.x, startNode.y);
+  ctx.lineTo(endNode.x, endNode.y);
   ctx.stroke();
+  ctx.lineWidth = 10;
   ctx.strokeStyle = 'rgb(255, 255, 255)';
   ctx.closePath();
 };
 
-const drawAllNodes = (graph, canvas, ctx) => {
+const drawAllNodes = (graph, ctx) => {
   graph.forEachNode((element) => {
-    drawNode(canvas, ctx, element);
+    drawNode(ctx, element);
   });
 };
 
-const drawAllEdges = (graph, canvas, ctx) => {
-  console.log(graph);
-  graph.forEachNode((element) => {
-    drawEdge(canvas, ctx, element);
+const drawAllEdges = (graph, ctx) => {
+  graph.edges.forEach((edgeList, startNodeId) => {
+    const startNode = graph.nodes[startNodeId];
+    edgeList.forEach((endNodeId) => {
+      if (endNodeId > startNodeId) {
+        drawEdge(ctx, startNode, graph.nodes[endNodeId]);
+      }
+    });
   });
 };
 

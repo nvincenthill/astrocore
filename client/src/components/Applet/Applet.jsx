@@ -7,7 +7,7 @@ class Applet extends React.Component {
     super(props);
     this.state = {
       gameState: {
-        isGamePlaying: false,
+        isGamePlaying: true,
       },
     };
   }
@@ -39,8 +39,8 @@ AstroCore
         <Game gameState={gameState} />
         {gameState.isGamePlaying ? null : startButton}
         <div className="stars" />
-        <div className="twinkling" />
-        <div className="clouds" />
+        {/* <div className="twinkling" /> */}
+        {/* <div className="clouds" /> */}
       </div>
     );
   }
