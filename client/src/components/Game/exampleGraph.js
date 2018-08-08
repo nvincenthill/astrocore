@@ -14,7 +14,7 @@ const randomGraph = () => {
     [false, false, false, false, false, false, false, false, false, true],
     [false, false, false, false, false, false, false, false, false, false],
   ];
-//   const getRandomInt = (min, max) => Math.floor(Math.random() * (max - min + 1)) + min;
+  //   const getRandomInt = (min, max) => Math.floor(Math.random() * (max - min + 1)) + min;
   const num = 10;
   const height = [
     window.innerHeight * 0.1,
@@ -43,7 +43,7 @@ const randomGraph = () => {
 
   const points = [100, 30, 20, 10, 0, 0, 10, 20, 30, 100];
   for (let i = 0; i < num; i += 1) {
-    const color = points[i] === 0 ? 'white' : i > 4 ? 'red' : 'blue';
+    const color = points[i] === 0 ? 'white' : i > 4 ? 'red' : 'goldenRod';
 
     newGraph.addNode(i, width[i], height[i], points[i], color, i > 4 ? 'Player1' : 'Player2');
   }

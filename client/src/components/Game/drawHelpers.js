@@ -40,6 +40,7 @@ const drawAllNodes = (graph, ctx) => {
 };
 
 const drawAllEdges = (graph, ctx) => {
+  // TODO: understand clear canvas
   resetCanvas(ctx);
   graph.edges.forEach((edgeList, startNodeId) => {
     const startNode = graph.nodes[startNodeId];

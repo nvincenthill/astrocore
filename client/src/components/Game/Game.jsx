@@ -15,23 +15,53 @@ class Game extends React.Component {
     const canvas = document.getElementsByClassName('gameboard');
     const ctx = canvas[0].getContext('2d');
     const sampleGraph = randomGraph.randomGraph();
-    this.setState({ graph: sampleGraph });
-    Draw.drawAllEdges(sampleGraph, ctx);
-    Draw.drawAllNodes(sampleGraph, ctx);
-    setInterval(
-      () => {
-        this.handleGraphUpdate();
-      },
+    const canvasLeft = canvas[0].offsetLeft;
+    const canvasTop = canvas[0].offsetTop;
+    // Add event listener for `click` events.
+    canvas[0].addEventListener(
+      'click',
+      (e) => {
+        const x = e.pageX - canvasLeft;
+        const y = e.pageY - canvasTop;
 
-      250,
+        console.log(x, y);
+        // Collision detection between clicked offset and element.
+        sampleGraph.nodes.forEach((node) => {
+          if (this.validateNodeClicked(node, x, y)) {
+            console.log('clicked on node');
+          }
+        });
+      },
+      false,
     );
+
+    this.setState({ graph: sampleGraph });
+
+    setInterval(() => {
+      this.handleGraphUpdate();
+    }, 100);
   }
 
   componentDidUpdate() {
     const canvas = document.getElementsByClassName('gameboard');
     const ctx = canvas[0].getContext('2d');
+    this.drawGraph(ctx);
+  }
+
+  validateNodeClicked(node, x, y) {
+    const radius = 20 + node.score / 1.6;
+    if (
+      y < node.y + radius
+      && y > node.y - radius
+      && (x < node.x + radius && x > node.x - radius)
+    ) {
+      return true;
+    }
+    return false;
+  }
+
+  drawGraph(ctx) {
     const { graph } = this.state;
-    console.log('updating');
     Draw.drawAllEdges(graph, ctx);
     Draw.drawAllNodes(graph, ctx);
   }
