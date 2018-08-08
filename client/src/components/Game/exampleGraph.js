@@ -14,7 +14,7 @@ const randomGraph = () => {
     [false, false, false, false, false, false, false, false, false, true],
     [false, false, false, false, false, false, false, false, false, false],
   ];
-  const getRandomInt = (min, max) => Math.floor(Math.random() * (max - min + 1)) + min;
+//   const getRandomInt = (min, max) => Math.floor(Math.random() * (max - min + 1)) + min;
   const num = 10;
   const height = [
     window.innerHeight * 0.1,

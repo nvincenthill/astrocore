@@ -18,14 +18,30 @@ class Game extends React.Component {
     this.setState({ graph: sampleGraph });
     Draw.drawAllEdges(sampleGraph, ctx);
     Draw.drawAllNodes(sampleGraph, ctx);
+    setInterval(
+      () => {
+        this.handleGraphUpdate();
+      },
+
+      250,
+    );
   }
 
   componentDidUpdate() {
     const canvas = document.getElementsByClassName('gameboard');
     const ctx = canvas[0].getContext('2d');
     const { graph } = this.state;
+    console.log('updating');
     Draw.drawAllEdges(graph, ctx);
     Draw.drawAllNodes(graph, ctx);
+  }
+
+  handleGraphUpdate() {
+    const { graph } = this.state;
+    for (let i = 0; i < graph.nodes.length; i += 1) {
+      graph.nodes[i].addOneToScore();
+    }
+    this.setState({ graph });
   }
 
   render() {
