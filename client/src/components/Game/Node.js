@@ -1,3 +1,5 @@
+import { Fighter } from './Fighter';
+
 class Node {
   constructor(id, x, y, score, color, owner) {
     this.id = id;
@@ -6,6 +8,7 @@ class Node {
     this.score = score;
     this.color = color;
     this.owner = owner;
+    this.fighters = [];
   }
 
   addOneToScore() {
@@ -22,6 +25,11 @@ class Node {
 
   addToScore(num) {
     this.score += num;
+  }
+
+  createFighter() {
+    const fighter = new Fighter(1, this.x, this.y, 1, this.color, this.owner);
+    this.fighters.push(fighter);
   }
 }
 

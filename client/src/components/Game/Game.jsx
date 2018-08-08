@@ -30,6 +30,7 @@ class Game extends React.Component {
           if (this.validateNodeClicked(node, x, y)) {
             console.log('clicked on node');
             node.halfScore();
+            node.createFighter();
           }
         });
       },
@@ -40,7 +41,8 @@ class Game extends React.Component {
 
     setInterval(() => {
       this.handleGraphUpdate();
-    }, 100);
+      this.incrementGameClock();
+    }, 1);
   }
 
   componentDidUpdate() {
@@ -65,6 +67,7 @@ class Game extends React.Component {
     const { graph } = this.state;
     Draw.drawAllEdges(graph, ctx);
     Draw.drawAllNodes(graph, ctx);
+    Draw.drawAllFighters(graph, ctx);
   }
 
   handleGraphUpdate() {

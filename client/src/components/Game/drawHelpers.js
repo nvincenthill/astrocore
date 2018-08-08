@@ -20,6 +20,17 @@ const drawNode = (ctx, node) => {
   ctx.closePath();
 };
 
+const drawFighter = (ctx, fighter) => {
+  const radius = 5;
+  ctx.beginPath();
+  ctx.fillStyle = fighter.color;
+  ctx.shadowBlur = 20;
+  ctx.shadowColor = fighter.color;
+  ctx.arc(fighter.x, fighter.y, radius, 0, 2 * Math.PI);
+  ctx.fill();
+  ctx.closePath();
+};
+
 const drawEdge = (ctx, startNode, endNode) => {
   ctx.beginPath();
   ctx.lineWidth = 10;
@@ -52,9 +63,19 @@ const drawAllEdges = (graph, ctx) => {
   });
 };
 
+const drawAllFighters = (graph, ctx) => {
+  graph.nodes.forEach((node) => {
+    node.fighters.forEach((fighter) => {
+      fighter.move();
+      drawFighter(ctx, fighter);
+    });
+  });
+};
+
 module.exports = {
   drawNode,
   drawAllNodes,
   drawAllEdges,
+  drawAllFighters,
   resetCanvas,
 };
