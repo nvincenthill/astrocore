@@ -1,10 +1,11 @@
 class Node {
-  constructor(id, x, y, score, color) {
+  constructor(id, x, y, score, color, owner) {
     this.id = id;
     this.x = x;
     this.y = y;
     this.score = score;
     this.color = color;
+    this.owner = owner;
   }
 }
 

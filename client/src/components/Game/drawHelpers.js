@@ -1,24 +1,30 @@
 const drawNode = (ctx, node) => {
-  ctx.beginPath();
   const radius = 20 + node.score / 1.6;
-  ctx.arc(node.x, node.y, radius, 0, 2 * Math.PI);
-  ctx.fillStyle = 'goldenRod';
-  ctx.fill();
+  ctx.fillStyle = node.color;
   ctx.font = '20px Arial';
-  ctx.fillStyle = 'white';
   ctx.textAlign = 'center';
   ctx.textBaseline = 'middle';
+  ctx.shadowBlur = 20;
+  ctx.shadowColor = node.color;
+  ctx.beginPath();
+  ctx.arc(node.x, node.y, radius, 0, 2 * Math.PI);
+  ctx.fill();
+  ctx.fillStyle = 'black';
+  ctx.shadowBlur = 0;
   ctx.fillText(node.score, node.x, node.y);
   ctx.closePath();
 };
 
 const drawEdge = (ctx, startNode, endNode) => {
+  ctx.lineWidth = 10;
+  ctx.strokeStyle = 'white';
+  ctx.fillStyle = 'white';
+  ctx.shadowBlur = 20;
+  ctx.shadowColor = 'white';
   ctx.beginPath();
   ctx.moveTo(startNode.x, startNode.y);
   ctx.lineTo(endNode.x, endNode.y);
   ctx.stroke();
-  ctx.lineWidth = 10;
-  ctx.strokeStyle = 'rgb(255, 255, 255)';
   ctx.closePath();
 };
 

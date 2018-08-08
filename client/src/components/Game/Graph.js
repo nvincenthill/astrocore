@@ -6,8 +6,8 @@ class Graph {
     this.edges = [];
   }
 
-  addNode(id, x, y, score, color) {
-    const newNode = new Node(id, x, y, score, color);
+  addNode(id, x, y, score, color, owner) {
+    const newNode = new Node(id, x, y, score, color, owner);
     this.nodes.push(newNode);
     this.edges[newNode.id] = [];
     return newNode;
@@ -54,42 +54,6 @@ class Graph {
   }
 }
 
-const randomGraph = () => {
-  const newGraph = new Graph();
-  const adjacencyMatrix = [
-    [false, true, false, false, false, false, false, false, false, false],
-    [true, false, true, false, false, false, false, false, false, false],
-    [false, false, false, true, false, false, false, false, false, false],
-    [false, false, false, false, true, false, false, false, false, false],
-    [false, false, false, false, false, true, false, false, false, false],
-    [false, false, false, false, false, false, true, false, false, false],
-    [false, false, false, false, false, false, false, true, false, false],
-    [false, false, false, false, false, false, false, false, true, false],
-    [false, false, false, false, false, false, false, false, false, true],
-    [false, false, false, false, false, false, false, false, false, false],
-  ];
-  const getRandomInt = (min, max) => Math.floor(Math.random() * (max - min + 1)) + min;
-  const num = 10;
-  let height = window.innerHeight * 0.1;
-  let width = window.innerWidth * 0.1;
-  for (let i = 0; i < num; i += 1) {
-    newGraph.addNode(i, width, height, getRandomInt(0, 100), '#ff0000');
-    height += 90;
-    width += getRandomInt(60, 120);
-  }
-
-  for (let i = 0; i < num; i += 1) {
-    for (let j = 0; j < adjacencyMatrix.length; j += 1) {
-      if (adjacencyMatrix[i][j] && i !== j) {
-        newGraph.addEdge(i, j);
-      }
-    }
-  }
-  console.log(newGraph);
-  return newGraph;
-};
-
 module.exports = {
   Graph,
-  randomGraph,
 };
