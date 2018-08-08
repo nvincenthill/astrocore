@@ -19,6 +19,10 @@ class Node {
       this.score = Math.floor(this.score / 2);
     }
   }
+
+  addToScore(num) {
+    this.score += num;
+  }
 }
 
 module.exports = {
