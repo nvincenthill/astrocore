@@ -13,6 +13,12 @@ class Node {
       this.score += 1;
     }
   }
+
+  halfScore() {
+    if (this.score !== 0) {
+      this.score = Math.floor(this.score / 2);
+    }
+  }
 }
 
 module.exports = {

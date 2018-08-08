@@ -29,6 +29,7 @@ class Game extends React.Component {
         sampleGraph.nodes.forEach((node) => {
           if (this.validateNodeClicked(node, x, y)) {
             console.log('clicked on node');
+            node.halfScore();
           }
         });
       },
