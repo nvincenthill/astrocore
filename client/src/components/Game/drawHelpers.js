@@ -21,10 +21,10 @@ const drawNode = (ctx, node) => {
 };
 
 const drawFighter = (ctx, fighter) => {
-  const radius = 5;
+  const radius = 10;
   ctx.beginPath();
   ctx.fillStyle = fighter.color;
-  ctx.shadowBlur = 20;
+  ctx.shadowBlur = 40;
   ctx.shadowColor = fighter.color;
   ctx.arc(fighter.x, fighter.y, radius, 0, 2 * Math.PI);
   ctx.fill();

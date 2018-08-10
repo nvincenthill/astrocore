@@ -27,6 +27,14 @@ class Node {
     this.score += num;
   }
 
+  captureNode(owner) {
+    console.log('node captured');
+    console.log('this');
+    this.owner = owner;
+    this.color = owner === 'Player1' ? 'red' : 'goldenRod';
+    console.log('this');
+  }
+
   createFighter(destinationNode) {
     const fighter = new Fighter(1, this.x, this.y, destinationNode, this.color, this.owner);
     this.fighters.push(fighter);
