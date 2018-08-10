@@ -1,23 +1,29 @@
 class Fighter {
   constructor(id, x, y, destinationNode, color, owner) {
-    this.destinationNode = destinationNode;
     this.id = id;
     this.x = x;
     this.y = y;
-    this.destX = destinationNode.x;
-    this.destY = destinationNode.y;
-    this.velocity = 1;
-    this.velocityX = this.velocity;
-    this.velocityY = this.velocity;
+    this.destinationNode = destinationNode;
     this.color = color === 'goldenRod' ? 'yellow' : 'red';
     this.owner = owner;
+    this.destX = destinationNode.x;
+    this.destY = destinationNode.y;
+    this.velocity = 10;
+    [this.velocityX, this.velocityY] = this.calcVelocity();
     this.isAlive = true;
+  }
+
+  calcVelocity() {
+    const xDiff = this.destX - this.x;
+    const yDiff = this.destY - this.y;
+    const speedDelimiter = Math.sqrt((xDiff * xDiff) + (yDiff * yDiff));
+    return [this.velocity * (xDiff / speedDelimiter), this.velocity * (yDiff / speedDelimiter)];
   }
 
   move() {
     if (this.isAlive) {
-      this.x += this.velocity;
-      this.y += this.velocity;
+      this.x += this.velocityX;
+      this.y += this.velocityY;
 
       // kill if off screen
       if (this.x > window.innerWidth || this.y > window.innerHeight) {
