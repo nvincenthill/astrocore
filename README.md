@@ -70,3 +70,4 @@ npm test
 
 [nvincenthill](https://github.com/nvincenthill 'Nicholas Vincent-Hill')
 [avincenthill](https://github.com/avincenthill 'Alexander Vincent-Hill')
+[slowmike](https://github.com/slowmike 'Michael Lin')
