@@ -16,7 +16,7 @@ const drawNode = (ctx, node) => {
   ctx.fill();
   ctx.fillStyle = 'black';
   ctx.shadowBlur = 0;
-  ctx.fillText(node.score, node.x, node.y);
+  ctx.fillText(Math.floor(node.score), node.x, node.y);
   ctx.closePath();
 };
 
@@ -66,8 +66,10 @@ const drawAllEdges = (graph, ctx) => {
 const drawAllFighters = (graph, ctx) => {
   graph.nodes.forEach((node) => {
     node.fighters.forEach((fighter) => {
-      fighter.move();
-      drawFighter(ctx, fighter);
+      if (fighter.isAlive) {
+        fighter.move();
+        drawFighter(ctx, fighter);
+      }
     });
   });
 };

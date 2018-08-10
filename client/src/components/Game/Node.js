@@ -11,9 +11,9 @@ class Node {
     this.fighters = [];
   }
 
-  addOneToScore() {
+  incrementScore() {
     if (this.score < 100 && this.score !== 0) {
-      this.score += 1;
+      this.score += 0.025;
     }
   }
 
@@ -27,9 +27,17 @@ class Node {
     this.score += num;
   }
 
-  createFighter() {
-    const fighter = new Fighter(1, this.x, this.y, 1, this.color, this.owner);
+  createFighter(destinationNode) {
+    const fighter = new Fighter(1, this.x, this.y, destinationNode, this.color, this.owner);
     this.fighters.push(fighter);
+  }
+
+  createFighters(n, destinationNode) {
+    for (let i = 0; i < n; i += 1) {
+      setTimeout(() => {
+        this.createFighter(destinationNode);
+      }, i * 100);
+    }
   }
 }
 

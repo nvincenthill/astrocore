@@ -8,12 +8,12 @@ class Game extends React.Component {
     super();
     this.state = {
       graph: null,
+      firstNodeClicked: null,
     };
   }
 
   componentDidMount() {
     const canvas = document.getElementsByClassName('gameboard');
-    const ctx = canvas[0].getContext('2d');
     const sampleGraph = randomGraph.randomGraph();
     const canvasLeft = canvas[0].offsetLeft;
     const canvasTop = canvas[0].offsetTop;
@@ -24,13 +24,19 @@ class Game extends React.Component {
         const x = e.pageX - canvasLeft;
         const y = e.pageY - canvasTop;
 
-        console.log(x, y);
         // Collision detection between clicked offset and element.
         sampleGraph.nodes.forEach((node) => {
           if (this.validateNodeClicked(node, x, y)) {
-            console.log('clicked on node');
-            node.halfScore();
-            node.createFighter();
+
+            const { firstNodeClicked } = this.state;
+
+            if (firstNodeClicked) {
+              this.setState({ firstNodeClicked: null });
+              firstNodeClicked.halfScore();
+              firstNodeClicked.createFighters(firstNodeClicked.score / 2, node);
+            } else {
+              this.setState({ firstNodeClicked: node });
+            }
           }
         });
       },
@@ -41,8 +47,7 @@ class Game extends React.Component {
 
     setInterval(() => {
       this.handleGraphUpdate();
-      this.incrementGameClock();
-    }, 1);
+    }, 13);
   }
 
   componentDidUpdate() {
@@ -73,7 +78,7 @@ class Game extends React.Component {
   handleGraphUpdate() {
     const { graph } = this.state;
     for (let i = 0; i < graph.nodes.length; i += 1) {
-      graph.nodes[i].addOneToScore();
+      graph.nodes[i].incrementScore();
     }
     this.setState({ graph });
   }
