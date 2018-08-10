@@ -16,7 +16,18 @@ const drawNode = (ctx, node) => {
   ctx.fill();
   ctx.fillStyle = 'black';
   ctx.shadowBlur = 0;
-  ctx.fillText(node.score, node.x, node.y);
+  ctx.fillText(Math.floor(node.score), node.x, node.y);
+  ctx.closePath();
+};
+
+const drawFighter = (ctx, fighter) => {
+  const radius = 10;
+  ctx.beginPath();
+  ctx.fillStyle = fighter.color;
+  ctx.shadowBlur = 40;
+  ctx.shadowColor = fighter.color;
+  ctx.arc(fighter.x, fighter.y, radius, 0, 2 * Math.PI);
+  ctx.fill();
   ctx.closePath();
 };
 
@@ -52,9 +63,21 @@ const drawAllEdges = (graph, ctx) => {
   });
 };
 
+const drawAllFighters = (graph, ctx) => {
+  graph.nodes.forEach((node) => {
+    node.fighters.forEach((fighter) => {
+      if (fighter.isAlive) {
+        fighter.move();
+        drawFighter(ctx, fighter);
+      }
+    });
+  });
+};
+
 module.exports = {
   drawNode,
   drawAllNodes,
   drawAllEdges,
+  drawAllFighters,
   resetCanvas,
 };
