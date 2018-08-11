@@ -68,6 +68,7 @@ npm test
 
 ## Collaborators
 
-[nvincenthill](https://github.com/nvincenthill 'Nicholas Vincent-Hill')
-[avincenthill](https://github.com/avincenthill 'Alexander Vincent-Hill')
-[slowmike](https://github.com/slowmike 'Michael Lin')
+- [Nicholas Vincent-Hill](https://github.com/nvincenthill 'nvincenthill')
+- [Alexander Vincent-Hill](https://github.com/avincenthill)
+- [Michael Lin](https://github.com/slowmike 'slowmike')
+- [Steve Oh](https://github.com/OhxSteve 'OhxSteve')
