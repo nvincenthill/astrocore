@@ -7,7 +7,7 @@ class Graph {
   }
 
   addNode(id, x, y, score, color, owner) {
-    const newNode = new Node(id, x, y, score, color, owner);
+    const newNode = new Node(id, x, y, score, color, owner, this);
     this.nodes.push(newNode);
     this.edges[newNode.id] = [];
     return newNode;
