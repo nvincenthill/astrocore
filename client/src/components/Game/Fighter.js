@@ -33,7 +33,7 @@ class Fighter {
       // kill if it impact node
       if (Math.abs(this.x - this.destX) < 10 && Math.abs(this.y - this.destY) < 10) {
         this.kill();
-        if (this.destinationNode.score === 0) {
+        if (Math.floor(this.destinationNode.score) === 0) {
           this.destinationNode.captureNode(this.owner);
         }
         if (this.owner === this.destinationNode.owner || this.owner === null) {

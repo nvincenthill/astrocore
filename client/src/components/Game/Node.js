@@ -30,10 +30,8 @@ class Node {
 
   captureNode(owner) {
     console.log('node captured');
-    console.log('this');
     this.owner = owner;
     this.color = owner === 'Player1' ? 'red' : 'goldenRod';
-    console.log('this');
   }
 
   toggleSelectNode() {
