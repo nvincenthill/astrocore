@@ -8,7 +8,7 @@ class Fighter {
     this.owner = owner;
     this.destX = destinationNode.x;
     this.destY = destinationNode.y;
-    this.velocity = 10;
+    this.velocity = 2;
     [this.velocityX, this.velocityY] = this.calcVelocity();
     this.isAlive = true;
   }
@@ -16,7 +16,7 @@ class Fighter {
   calcVelocity() {
     const xDiff = this.destX - this.x;
     const yDiff = this.destY - this.y;
-    const speedDelimiter = Math.sqrt((xDiff * xDiff) + (yDiff * yDiff));
+    const speedDelimiter = Math.sqrt(xDiff * xDiff + yDiff * yDiff);
     return [this.velocity * (xDiff / speedDelimiter), this.velocity * (yDiff / speedDelimiter)];
   }
 
@@ -36,7 +36,7 @@ class Fighter {
         if (this.destinationNode.score === 0) {
           this.destinationNode.captureNode(this.owner);
         }
-        if (this.owner === this.destinationNode.owner) {
+        if (this.owner === this.destinationNode.owner || this.owner === null) {
           this.destinationNode.score += 1;
         } else {
           this.destinationNode.score -= 1;
