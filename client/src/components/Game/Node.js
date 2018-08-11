@@ -1,7 +1,7 @@
 import { Fighter } from './Fighter';
 
 class Node {
-  constructor(id, x, y, score, color, owner) {
+  constructor(id, x, y, score, color, owner, graph) {
     this.id = id;
     this.x = x;
     this.y = y;
@@ -10,17 +10,12 @@ class Node {
     this.owner = owner;
     this.selected = false;
     this.fighters = [];
+    this.graph = graph;
   }
 
   incrementScore() {
     if (this.score < 100 && this.score !== 0) {
       this.score += 0.025;
-    }
-  }
-
-  halfScore() {
-    if (this.score !== 0) {
-      this.score = Math.floor(this.score / 2);
     }
   }
 
@@ -45,7 +40,16 @@ class Node {
   }
 
   createFighter(destinationNode) {
-    const fighter = new Fighter(1, this.x, this.y, destinationNode, this.color, this.owner);
+    const fighter = new Fighter(
+      1,
+      this.x,
+      this.y,
+      this,
+      destinationNode,
+      this.color,
+      this.owner,
+      this.graph,
+    );
     this.fighters.push(fighter);
   }
 
@@ -53,6 +57,7 @@ class Node {
     for (let i = 0; i < n; i += 1) {
       setTimeout(() => {
         this.createFighter(destinationNode);
+        this.score -= 1;
       }, i * 100);
     }
   }

@@ -32,7 +32,6 @@ class Game extends React.Component {
             if (firstNodeClicked) {
               firstNodeClicked.toggleSelectNode();
               this.setState({ firstNodeClicked: null });
-              firstNodeClicked.halfScore();
               firstNodeClicked.createFighters(firstNodeClicked.score / 2, node);
             } else {
               this.setState({ firstNodeClicked: node });
