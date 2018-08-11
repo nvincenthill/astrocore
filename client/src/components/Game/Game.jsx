@@ -27,15 +27,16 @@ class Game extends React.Component {
         // Collision detection between clicked offset and element.
         sampleGraph.nodes.forEach((node) => {
           if (this.validateNodeClicked(node, x, y)) {
-
             const { firstNodeClicked } = this.state;
 
             if (firstNodeClicked) {
+              firstNodeClicked.toggleSelectNode();
               this.setState({ firstNodeClicked: null });
               firstNodeClicked.halfScore();
               firstNodeClicked.createFighters(firstNodeClicked.score / 2, node);
             } else {
               this.setState({ firstNodeClicked: node });
+              node.toggleSelectNode();
             }
           }
         });

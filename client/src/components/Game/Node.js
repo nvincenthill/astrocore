@@ -8,6 +8,7 @@ class Node {
     this.score = score;
     this.color = color;
     this.owner = owner;
+    this.selected = false;
     this.fighters = [];
   }
 
@@ -33,6 +34,16 @@ class Node {
     this.owner = owner;
     this.color = owner === 'Player1' ? 'red' : 'goldenRod';
     console.log('this');
+  }
+
+  toggleSelectNode() {
+    if (!this.isSelected) {
+      this.color = 'blue';
+      this.isSelected = true;
+    } else {
+      this.color = this.owner === 'Player1' ? 'red' : 'goldenRod';
+      this.isSelected = false;
+    }
   }
 
   createFighter(destinationNode) {
