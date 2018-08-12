@@ -1,6 +1,5 @@
 const resetCanvas = (ctx) => {
-  // canvas.width, canvas.height
-  ctx.clearRect(0, 0, 2000, 2000);
+  ctx.clearRect(0, 0, window.innerWidth, window.innerHeight);
 };
 
 const drawNode = (ctx, node) => {
