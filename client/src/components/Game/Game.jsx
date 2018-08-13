@@ -29,7 +29,7 @@ class Game extends React.Component {
           if (this.validateNodeClicked(node, x, y)) {
             const { firstNodeClicked } = this.state;
 
-            if (firstNodeClicked) {
+            if (firstNodeClicked && node.id !== firstNodeClicked.id) {
               firstNodeClicked.toggleSelectNode();
               this.setState({ firstNodeClicked: null });
               firstNodeClicked.createFighters(firstNodeClicked.score / 2, node);
