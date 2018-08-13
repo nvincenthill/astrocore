@@ -1,6 +1,6 @@
 import Graph from './Graph';
 
-const randomGraph = () => {
+const exampleGraph = () => {
   const newGraph = new Graph.Graph();
   const adjacencyMatrix = [
     [false, true, false, false, false, false, false, false, false, false],
@@ -60,5 +60,5 @@ const randomGraph = () => {
 };
 
 module.exports = {
-  randomGraph,
+  exampleGraph,
 };
