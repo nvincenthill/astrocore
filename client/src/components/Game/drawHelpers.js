@@ -13,9 +13,9 @@ const drawNode = (ctx, node) => {
   ctx.shadowColor = node.color;
   ctx.arc(node.x, node.y, radius, 0, 2 * Math.PI);
   ctx.fill();
-  // ctx.fillStyle = 'black';
-  // ctx.shadowBlur = 0;
-  // ctx.fillText(Math.floor(node.score), node.x, node.y);
+  ctx.fillStyle = 'black';
+  ctx.shadowBlur = 0;
+  ctx.fillText(Math.floor(node.score), node.x, node.y);
   ctx.closePath();
 };
 

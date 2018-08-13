@@ -1,4 +1,4 @@
-import { Node } from './Node';
+import { Node } from '../Node';
 
 describe('Node', () => {
   test('should have properties "x","y","score", and "id"', () => {

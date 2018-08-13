@@ -1,4 +1,4 @@
-import { Graph } from './Graph';
+import { Graph } from '../Graph';
 
 describe('Graph', () => {
   test('should have methods named "addNode", "contains", "removeNode", "addEdge", "hasEdge", "removeEdge" and "forEachNode"', () => {

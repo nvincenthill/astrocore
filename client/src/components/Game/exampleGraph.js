@@ -49,7 +49,7 @@ const exampleGraph = () => {
     if (points[i] === 0) {
       color = 'white';
     } else {
-      color = owner === 'Player1' ? 'red' : 'goldenRod';
+      color = owner === 'Player1' ? 'red' : 'yellow';
     }
 
     newGraph.addNode(i, width[i], height[i], points[i], color, owner);

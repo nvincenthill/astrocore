@@ -26,7 +26,7 @@ class Node {
   captureNode(owner) {
     // console.log('node captured');
     this.owner = owner;
-    this.color = owner === 'Player1' ? 'red' : 'goldenRod';
+    this.color = owner === 'Player1' ? 'red' : 'yellow';
   }
 
   toggleSelectNode() {
@@ -34,7 +34,7 @@ class Node {
       this.color = 'blue';
       this.isSelected = true;
     } else {
-      this.color = this.owner === 'Player1' ? 'red' : 'goldenRod';
+      this.color = this.owner === 'Player1' ? 'red' : 'yellow';
       this.isSelected = false;
     }
   }
