@@ -43,7 +43,7 @@ const exampleGraph = () => {
 
   const points = [100, 30, 20, 10, 0, 0, 10, 20, 30, 100];
   for (let i = 0; i < num; i += 1) {
-    const color = points[i] === 0 ? 'white' : i > 4 ? 'red' : 'goldenRod';
+    const color = points[i] === 0 ? 'white' : i > 4 ? 'red' : 'yellow';
 
     newGraph.addNode(i, width[i], height[i], points[i], color, i > 4 ? 'Player1' : 'Player2');
   }
