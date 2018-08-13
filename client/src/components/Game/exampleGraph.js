@@ -3,15 +3,15 @@ import Graph from './Graph';
 const exampleGraph = () => {
   const newGraph = new Graph.Graph();
   const adjacencyMatrix = [
-    [false, true, false, false, false, false, false, false, false, false],
-    [true, false, true, false, false, false, false, false, false, false],
-    [false, false, false, true, false, false, false, false, false, false],
-    [false, false, false, false, true, false, false, false, false, false],
-    [false, false, false, false, false, true, false, false, false, false],
-    [false, false, false, false, false, false, true, false, false, false],
-    [false, false, false, false, false, false, false, true, false, false],
-    [false, false, false, false, false, false, false, false, true, false],
-    [false, false, false, false, false, false, false, false, false, true],
+    [false, false, false, false, false, false, false, false, false, false],
+    [false, false, false, false, false, false, false, false, false, false],
+    [false, false, false, false, false, false, false, false, false, false],
+    [false, false, false, false, false, false, false, false, false, false],
+    [false, false, false, false, false, false, false, false, false, false],
+    [false, false, false, false, false, false, false, false, false, false],
+    [false, false, false, false, false, false, false, false, false, false],
+    [false, false, false, false, false, false, false, false, false, false],
+    [false, false, false, false, false, false, false, false, false, false],
     [false, false, false, false, false, false, false, false, false, false],
   ];
   //   const getRandomInt = (min, max) => Math.floor(Math.random() * (max - min + 1)) + min;
@@ -51,12 +51,11 @@ const exampleGraph = () => {
   // for (let i = 0; i < num; i += 1) {
   //   for (let j = 0; j < adjacencyMatrix.length; j += 1) {
   //     if (adjacencyMatrix[i][j] && i !== j) {
-  //       //TBD handle edgess
-  //       //newGraph.addEdge(i, j);
+  //       newGraph.addEdge(i, j);
   //     }
   //   }
   // }
-  return newGraph;
+  // return newGraph;
 };
 
 module.exports = {
