@@ -36,7 +36,9 @@ class Fighter {
           this.destinationNode.captureNode(this.owner);
         }
         if (this.owner === this.destinationNode.owner || this.owner === null) {
-          this.destinationNode.score += 1;
+          if (this.destinationNode.score < 100) {
+            this.destinationNode.score += 1;
+          }
         } else {
           this.destinationNode.score -= 1;
         }
