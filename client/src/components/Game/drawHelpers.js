@@ -22,9 +22,18 @@ const drawNode = (ctx, node) => {
 const drawFighter = (ctx, fighter) => {
   const radius = 10;
   ctx.beginPath();
-  ctx.fillStyle = fighter.color;
+
   ctx.shadowBlur = 40;
-  ctx.shadowColor = fighter.color;
+
+  // color based on fighter owner
+  if (fighter.owner === 'Player1') {
+    ctx.fillStyle = 'red';
+    ctx.shadowColor = 'red';
+  } else {
+    ctx.fillStyle = 'yellow';
+    ctx.shadowColor = 'yellow';
+  }
+
   ctx.arc(fighter.x, fighter.y, radius, 0, 2 * Math.PI);
   ctx.fill();
   ctx.closePath();
