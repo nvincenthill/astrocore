@@ -34,10 +34,10 @@ AstroCore
       </React.Fragment>
     );
     const { gameState } = this.state;
+    const game = <Game gameState={gameState} />;
     return (
       <div className="game">
-        <Game gameState={gameState} />
-        {gameState.isGamePlaying ? null : startButton}
+        {gameState.isGamePlaying ? game : startButton}
         <div className="stars" />
         {/* <div className="twinkling" />
         <div className="clouds" /> */}
