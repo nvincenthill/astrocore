@@ -1,10 +1,9 @@
 class Fighter {
-  constructor(id, x, y, originNode, destinationNode, color, owner, graph) {
+  constructor(id, x, y, originNode, destinationNode, owner, graph) {
     this.id = id;
     this.x = x;
     this.y = y;
     this.destinationNode = destinationNode;
-    this.color = color === 'goldenRod' ? 'yellow' : 'red';
     this.owner = owner;
     this.destX = destinationNode.x;
     this.destY = destinationNode.y;
