@@ -28,8 +28,10 @@ class Game extends React.Component {
         sampleGraph.nodes.forEach((node) => {
           if (this.validateNodeClicked(node, x, y)) {
             const { firstNodeClicked } = this.state;
-
-            if (firstNodeClicked && node.id !== firstNodeClicked.id) {
+            if (firstNodeClicked) {
+              if (node.id === firstNodeClicked.id) {
+                return;
+              }
               firstNodeClicked.toggleSelectNode();
               this.setState({ firstNodeClicked: null });
               firstNodeClicked.createFighters(firstNodeClicked.score / 2, node);
