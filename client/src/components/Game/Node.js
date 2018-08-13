@@ -19,10 +19,6 @@ class Node {
     }
   }
 
-  addToScore(num) {
-    this.score += num;
-  }
-
   captureNode(owner) {
     // console.log('node captured');
     this.owner = owner;
