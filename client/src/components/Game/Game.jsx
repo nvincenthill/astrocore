@@ -14,7 +14,7 @@ class Game extends React.Component {
 
   componentDidMount() {
     const canvas = document.getElementsByClassName('gameboard');
-    const sampleGraph = randomGraph.randomGraph();
+    const sampleGraph = randomGraph.exampleGraph();
     const canvasLeft = canvas[0].offsetLeft;
     const canvasTop = canvas[0].offsetTop;
     // Add event listener for `click` events.
