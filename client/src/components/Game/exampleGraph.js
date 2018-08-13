@@ -1,6 +1,6 @@
 import Graph from './Graph';
 
-const randomGraph = () => {
+const exampleGraph = () => {
   const newGraph = new Graph.Graph();
   const adjacencyMatrix = [
     [false, true, false, false, false, false, false, false, false, false],
@@ -48,17 +48,17 @@ const randomGraph = () => {
     newGraph.addNode(i, width[i], height[i], points[i], color, i > 4 ? 'Player1' : 'Player2');
   }
 
-  for (let i = 0; i < num; i += 1) {
-    for (let j = 0; j < adjacencyMatrix.length; j += 1) {
-      if (adjacencyMatrix[i][j] && i !== j) {
-        newGraph.addEdge(i, j);
-      }
-    }
-  }
-  console.log(newGraph);
+  // for (let i = 0; i < num; i += 1) {
+  //   for (let j = 0; j < adjacencyMatrix.length; j += 1) {
+  //     if (adjacencyMatrix[i][j] && i !== j) {
+  //       //TBD handle edgess
+  //       //newGraph.addEdge(i, j);
+  //     }
+  //   }
+  // }
   return newGraph;
 };
 
 module.exports = {
-  randomGraph,
+  exampleGraph,
 };
