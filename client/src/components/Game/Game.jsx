@@ -1,5 +1,4 @@
 import React from 'react';
-// import Graph from './Graph';
 import randomGraph from './exampleGraph';
 import Draw from './drawHelpers';
 
@@ -72,8 +71,8 @@ class Game extends React.Component {
 
   drawGraph(ctx) {
     const { graph } = this.state;
-    Draw.drawAllEdges(graph, ctx);
     Draw.drawAllNodes(graph, ctx);
+    Draw.drawAllEdges(graph, ctx);
     Draw.drawAllFighters(graph, ctx);
   }
 
