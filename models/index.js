@@ -2,10 +2,10 @@ const mongoose = require('mongoose');
 
 const dbURI = process.env.MONGODB_URI || 'mongodb://localhost:27017/astrocore';
 
-mongoose.connect(dbURI);
-// {
-//   useNewUrlParser: true,
-// },
+mongoose.connect(
+  dbURI,
+  { useNewUrlParser: true },
+);
 
 mongoose.connection.on('connected', () => {
   console.log(`Mongoose default connection open to ${dbURI}`);
