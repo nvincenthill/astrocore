@@ -1,5 +1,6 @@
 import React from 'react';
 import Game from '../Game';
+import socket from '../socket';
 // import FontAwesome from 'react-fontawesome';
 
 class Applet extends React.Component {
@@ -10,6 +11,12 @@ class Applet extends React.Component {
         isGamePlaying: true,
       },
     };
+  }
+
+  componentDidMount() {
+    socket.on('message', (data) => {
+      console.log(data);
+    });
   }
 
   handleGameStart() {

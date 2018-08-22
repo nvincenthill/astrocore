@@ -26,3 +26,6 @@ client/dist/
 
 # vscode
 .vscode
+
+# enviromental variables
+.env
