@@ -1,27 +1,22 @@
+require('dotenv').config();
 const express = require('express');
-const http = require('http');
-const path = require('path');
-const socketIO = require('socket.io');
-const routes = require('./../routes');
 
 const app = express();
-const server = http.Server(app);
-const io = socketIO(server).listen(server);
+const server = require('http').Server(app);
+const io = require('socket.io')(server);
 
-app.set('port', process.env.PORT || 8080);
+server.listen(process.env.PORT);
+console.log(`listening on port ${process.env.PORT}...`);
 
 app.use(express.static('public/'));
 app.use(express.static('client/dist'));
 
-// routing
-app.use('/api', routes);
+io.on('connection', (socket) => {
+  setInterval(() => {
+    socket.emit('message', { hello: 'world' });
+  }, 1000);
 
-// Add the WebSocket handlers
-io.on('connection', (socket) => {});
-
-// testing
-setInterval(() => {
-  io.sockets.emit('message', 'hi!');
-}, 1000);
-
-module.exports = app;
+  socket.on('my other event', (data) => {
+    console.log(data);
+  });
+});
