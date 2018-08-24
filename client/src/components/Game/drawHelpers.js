@@ -80,10 +80,17 @@ const drawAllFighters = (graph, ctx) => {
   });
 };
 
+const drawGraph = (graph, ctx) => {
+  resetCanvas(ctx);
+  drawAllEdges(graph, ctx);
+  drawAllNodes(graph, ctx);
+  drawAllFighters(graph, ctx);
+};
+
 module.exports = {
-  drawNode,
   drawAllNodes,
   drawAllEdges,
   drawAllFighters,
   resetCanvas,
+  drawGraph,
 };
