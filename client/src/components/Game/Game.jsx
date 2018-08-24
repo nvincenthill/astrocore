@@ -72,6 +72,7 @@ class Game extends React.Component {
 
   drawGraph(ctx) {
     const { graph } = this.state;
+    Draw.resetCanvas(ctx);
     Draw.drawAllEdges(graph, ctx);
     Draw.drawAllNodes(graph, ctx);
     Draw.drawAllFighters(graph, ctx);
