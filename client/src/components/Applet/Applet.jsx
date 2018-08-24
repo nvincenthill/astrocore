@@ -1,7 +1,6 @@
 import React from 'react';
 import Game from '../Game';
 import socket from '../socket';
-// import FontAwesome from 'react-fontawesome';
 
 class Applet extends React.Component {
   constructor(props) {
@@ -32,7 +31,8 @@ class Applet extends React.Component {
 
   handleServerTransmissions() {
     socket.on('gamestate', (data) => {
-      console.log(data);
+      // handle graph update
+      // console.log(data);
     });
   }
 
@@ -66,8 +66,8 @@ AstroCore
       <div className="game">
         {gameState.isGamePlaying ? game : startButton}
         <div className="stars" />
-        {/* <div className="twinkling" />
-        <div className="clouds" /> */}
+        {/* <div className="twinkling" /> */}
+        {/* <div className="clouds" /> */}
       </div>
     );
   }
