@@ -8,7 +8,7 @@ class Applet extends React.Component {
     this.state = {
       gameState: {
         isGamePlaying: false,
-        playerName: null,
+        playerName: 'Player One',
         fps: 1,
       },
     };
@@ -36,10 +36,10 @@ class Applet extends React.Component {
   }
 
   handleInputTransmissions() {
-    const { playerName, fps } = this.state;
+    const { gameState } = this.state;
     setInterval(() => {
-      socket.emit(`${playerName} input`, 'hello server');
-    }, 1000 / fps);
+      socket.emit(`${gameState.playerName} input`, { width: window.innerWidth, height: window.innerHeight });
+    }, 1000 / gameState.fps);
   }
 
   toggleGamePlaying() {

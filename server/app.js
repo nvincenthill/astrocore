@@ -5,6 +5,11 @@ const app = express();
 const server = require('http').Server(app);
 const io = require('socket.io')(server);
 
+// create a new gameState
+const initialGameState = require('./game/exampleGraph');
+
+const newGame = initialGameState.exampleGraph(375, 812);
+
 server.listen(process.env.PORT);
 console.log(`listening on port ${process.env.PORT}...`);
 
@@ -15,13 +20,13 @@ io.on('connection', (socket) => {
   const fps = 1;
 
   // handle player one interactions
-  socket.on('player one input', (data) => {
-    console.log(data);
+  socket.on('Player One input', (data) => {
+    // console.log(data);
   });
 
   // handle player two interactions
   socket.on('player two input', (data) => {
-    console.log(data);
+    // console.log(data);
   });
 
   // handle new player creation
@@ -34,9 +39,10 @@ io.on('connection', (socket) => {
     // remove disconnected player
   });
 
+  const clientPacket = {};
+
   setInterval(() => {
-    const gameState = {};
-    gameState.currentTime = new Date();
-    socket.emit('gamestate', gameState);
+    clientPacket.currentTime = new Date();
+    socket.emit('gamestate', newGame);
   }, 1000 / fps);
 });

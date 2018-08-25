@@ -14,6 +14,8 @@ class Game extends React.Component {
 
   componentDidMount() {
     const canvas = document.getElementsByClassName('gameboard');
+
+    // import graph
     const sampleGraph = randomGraph.exampleGraph();
     const canvasLeft = canvas[0].offsetLeft;
     const canvasTop = canvas[0].offsetTop;
@@ -47,6 +49,7 @@ class Game extends React.Component {
     );
 
     this.setState({ graph: sampleGraph });
+
     setInterval(() => {
       this.animateLoop(canvas);
     }, 1000 / 60);
@@ -54,12 +57,8 @@ class Game extends React.Component {
 
   animateLoop(canvas) {
     const { graph } = this.state;
-    for (let i = 0; i < graph.nodes.length; i += 1) {
-      graph.nodes[i].incrementScore();
-    }
     const ctx = canvas[0].getContext('2d');
     Draw.drawGraph(graph, ctx);
-    this.setState({ graph });
   }
 
   render() {
