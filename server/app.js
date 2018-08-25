@@ -35,6 +35,7 @@ io.on('connection', (socket) => {
     handleGameLoop() {
       // move fighters
       this.gameState.nodes.forEach((node) => {
+        node.incrementScore();
         node.fighters.forEach((fighter) => {
           if (fighter.isAlive) {
             fighter.move();
@@ -55,7 +56,6 @@ io.on('connection', (socket) => {
 
   // handle clicks
   socket.on('click', (data) => {
-    console.log(data);
     validateClicks(game, data.x, data.y);
   });
 
@@ -64,7 +64,7 @@ io.on('connection', (socket) => {
     // remove disconnected player
   });
 
-  // handle gameloop and emit gameState to clients
+  // event loop
   setInterval(() => {
     game.handleGameLoop();
     clientPacket.gameState = game.gameState;
