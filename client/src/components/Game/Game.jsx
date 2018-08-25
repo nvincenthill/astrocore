@@ -63,13 +63,9 @@ class Game extends React.Component {
   }
 
   render() {
-    return (
-      <canvas
-        width={window.innerWidth - window.innerWidth * 0.05}
-        height={window.innerHeight - window.innerHeight * 0.05}
-        className="gameboard"
-      />
-    );
+    const width = window.innerWidth - window.innerWidth * 0.05;
+    const height = window.innerHeight - window.innerHeight * 0.05;
+    return <canvas width={width} height={height} className="gameboard" />;
   }
 }
 

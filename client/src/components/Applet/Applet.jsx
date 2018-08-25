@@ -7,7 +7,7 @@ class Applet extends React.Component {
     super(props);
     this.state = {
       gameState: {
-        isGamePlaying: true,
+        isGamePlaying: false,
         playerName: null,
         fps: 1,
       },
@@ -15,7 +15,6 @@ class Applet extends React.Component {
   }
 
   componentDidMount() {
-    this.createNewPlayer();
     this.handleInputTransmissions();
     this.handleServerTransmissions();
   }
@@ -32,7 +31,7 @@ class Applet extends React.Component {
   handleServerTransmissions() {
     socket.on('gamestate', (data) => {
       // handle graph update
-      // console.log(data);
+      console.log(data);
     });
   }
 
@@ -47,6 +46,7 @@ class Applet extends React.Component {
     const { gameState } = this.state;
     gameState.isGamePlaying = !gameState.isGamePlaying;
     this.setState({ gameState });
+    this.createNewPlayer();
   }
 
   render() {
@@ -62,12 +62,13 @@ AstroCore
     );
     const { gameState } = this.state;
     const game = <Game gameState={gameState} />;
+
     return (
       <div className="game">
         {gameState.isGamePlaying ? game : startButton}
         <div className="stars" />
-        {/* <div className="twinkling" /> */}
-        {/* <div className="clouds" /> */}
+        {/* <div className="twinkling" />
+        <div className="clouds" /> */}
       </div>
     );
   }

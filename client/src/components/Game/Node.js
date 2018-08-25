@@ -20,7 +20,6 @@ class Node {
   }
 
   captureNode(owner) {
-    // console.log('node captured');
     this.owner = owner;
     this.color = owner === 'Player1' ? 'red' : 'yellow';
   }
