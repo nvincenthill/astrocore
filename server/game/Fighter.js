@@ -7,7 +7,7 @@ class Fighter {
     this.owner = owner;
     this.destX = destinationNode.x;
     this.destY = destinationNode.y;
-    // this.velocity = graph.hasEdge(originNode.id, destinationNode.id) ? 5 : 3;
+    this.velocity = 3; // graph.hasEdge(originNode.id, destinationNode.id) ? 5 : 3
     [this.velocityX, this.velocityY] = this.calcVelocity();
     this.isAlive = true;
   }
@@ -25,7 +25,8 @@ class Fighter {
       this.y += this.velocityY;
 
       // kill if off screen
-      if (this.x > window.innerWidth || this.y > window.innerHeight) {
+      // TODO: refactor for dynamic screen widths
+      if (this.x > 1000 || this.y > 1000) {
         this.kill();
       }
 
