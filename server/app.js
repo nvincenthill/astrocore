@@ -8,6 +8,9 @@ const io = require('socket.io')(server);
 // create a new gameState
 const initialGameState = require('./game/exampleGraph');
 
+// game logic
+const { validateClicks } = require('./helpers');
+
 server.listen(process.env.PORT);
 console.log(`listening on port ${process.env.PORT}...`);
 
@@ -19,6 +22,7 @@ io.on('connection', (socket) => {
     gameState: initialGameState.exampleGraph(375, 812),
     playerOneName: null,
     playerTwoName: null,
+    firstNodeClicked: null,
     addPlayer(name) {
       if (this.playerOneName === null) {
         this.playerOneName = name;
@@ -27,6 +31,17 @@ io.on('connection', (socket) => {
       } else {
         console.log('Game is full - cannot add player');
       }
+    },
+    handleGameLoop() {
+      // move fighters
+      this.gameState.nodes.forEach((node) => {
+        node.fighters.forEach((fighter) => {
+          if (fighter.isAlive) {
+            fighter.move();
+          }
+        });
+      });
+      // check for victory conditions
     },
   };
 
@@ -41,6 +56,7 @@ io.on('connection', (socket) => {
   // handle clicks
   socket.on('click', (data) => {
     console.log(data);
+    validateClicks(game, data.x, data.y);
   });
 
   // handle client disconnects
@@ -48,9 +64,9 @@ io.on('connection', (socket) => {
     // remove disconnected player
   });
 
-  // emit gameState to clients
+  // handle gameloop and emit gameState to clients
   setInterval(() => {
-    clientPacket.currentTime = new Date();
+    game.handleGameLoop();
     clientPacket.gameState = game.gameState;
     socket.emit('gamestate', clientPacket);
   }, 1000 / fps);

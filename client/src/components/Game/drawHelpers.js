@@ -74,7 +74,6 @@ const drawAllFighters = (graph, ctx) => {
   graph.nodes.forEach((node) => {
     node.fighters.forEach((fighter) => {
       if (fighter.isAlive) {
-        fighter.move();
         drawFighter(ctx, fighter);
       }
     });
@@ -85,8 +84,8 @@ const drawGraph = (graph, canvas) => {
   const ctx = canvas[0].getContext('2d');
   resetCanvas(ctx);
   drawAllEdges(graph, ctx);
-  drawAllNodes(graph, ctx);
   drawAllFighters(graph, ctx);
+  drawAllNodes(graph, ctx);
 };
 
 module.exports = {
