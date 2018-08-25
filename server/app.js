@@ -8,8 +8,6 @@ const io = require('socket.io')(server);
 // create a new gameState
 const initialGameState = require('./game/exampleGraph');
 
-const newGame = initialGameState.exampleGraph(375, 812);
-
 server.listen(process.env.PORT);
 console.log(`listening on port ${process.env.PORT}...`);
 
@@ -17,21 +15,32 @@ app.use(express.static('public/'));
 app.use(express.static('client/dist'));
 
 io.on('connection', (socket) => {
-  const fps = 1;
+  const game = {
+    gameState: initialGameState.exampleGraph(375, 812),
+    playerOneName: null,
+    playerTwoName: null,
+    addPlayer(name) {
+      if (this.playerOneName === null) {
+        this.playerOneName = name;
+      } else if (this.playerTwoName === null) {
+        this.playerTwoName = name;
+      } else {
+        console.log('Game is full - cannot add player');
+      }
+    },
+  };
 
-  // handle player one interactions
-  socket.on('Player One input', (data) => {
-    // console.log(data);
-  });
-
-  // handle player two interactions
-  socket.on('player two input', (data) => {
-    // console.log(data);
-  });
+  const fps = 60;
+  const clientPacket = {};
 
   // handle new player creation
   socket.on('new player', (data) => {
-    console.log('creating new player', data);
+    game.addPlayer(data.name);
+  });
+
+  // handle clicks
+  socket.on('click', (data) => {
+    console.log(data);
   });
 
   // handle client disconnects
@@ -39,10 +48,10 @@ io.on('connection', (socket) => {
     // remove disconnected player
   });
 
-  const clientPacket = {};
-
+  // emit gameState to clients
   setInterval(() => {
     clientPacket.currentTime = new Date();
-    socket.emit('gamestate', newGame);
+    clientPacket.gameState = game.gameState;
+    socket.emit('gamestate', clientPacket);
   }, 1000 / fps);
 });

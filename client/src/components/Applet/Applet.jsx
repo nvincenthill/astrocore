@@ -8,45 +8,21 @@ class Applet extends React.Component {
     this.state = {
       gameState: {
         isGamePlaying: false,
-        playerName: 'Player One',
-        fps: 1,
       },
     };
-  }
-
-  componentDidMount() {
-    this.handleInputTransmissions();
-    this.handleServerTransmissions();
   }
 
   handleGameStart() {
     this.toggleGamePlaying();
   }
 
-  createNewPlayer() {
-    socket.emit('new player', 'some unique client generated value');
-    this.setState({ playerName: 'player one' });
-  }
-
-  handleServerTransmissions() {
-    socket.on('gamestate', (data) => {
-      // handle graph update
-      console.log(data);
-    });
-  }
-
-  handleInputTransmissions() {
-    const { gameState } = this.state;
-    setInterval(() => {
-      socket.emit(`${gameState.playerName} input`, { width: window.innerWidth, height: window.innerHeight });
-    }, 1000 / gameState.fps);
-  }
-
   toggleGamePlaying() {
     const { gameState } = this.state;
     gameState.isGamePlaying = !gameState.isGamePlaying;
     this.setState({ gameState });
-    this.createNewPlayer();
+    const playerInformation = {};
+    playerInformation.name = 'Nick';
+    socket.emit('new player', playerInformation);
   }
 
   render() {

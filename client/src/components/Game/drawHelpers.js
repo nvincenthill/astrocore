@@ -41,6 +41,7 @@ const drawFighter = (ctx, fighter) => {
 
 const drawEdge = (ctx, startNode, endNode) => {
   ctx.beginPath();
+  // ctx.setLineDash([10, 10]);
   ctx.lineWidth = 10;
   ctx.strokeStyle = 'white';
   ctx.fillStyle = 'white';
@@ -53,7 +54,7 @@ const drawEdge = (ctx, startNode, endNode) => {
 };
 
 const drawAllNodes = (graph, ctx) => {
-  graph.forEachNode((element) => {
+  graph.nodes.forEach((element) => {
     drawNode(ctx, element);
   });
 };
@@ -80,7 +81,8 @@ const drawAllFighters = (graph, ctx) => {
   });
 };
 
-const drawGraph = (graph, ctx) => {
+const drawGraph = (graph, canvas) => {
+  const ctx = canvas[0].getContext('2d');
   resetCanvas(ctx);
   drawAllEdges(graph, ctx);
   drawAllNodes(graph, ctx);
