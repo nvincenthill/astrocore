@@ -1,4 +1,4 @@
-import { Node } from './Node';
+const { Node } = require('./Node');
 
 class Graph {
   constructor() {

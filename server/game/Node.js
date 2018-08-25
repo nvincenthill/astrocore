@@ -1,4 +1,4 @@
-import { Fighter } from './Fighter';
+const { Fighter } = require('./Fighter');
 
 class Node {
   constructor(id, x, y, score, color, owner, graph) {
@@ -10,7 +10,6 @@ class Node {
     this.owner = owner;
     this.selected = false;
     this.fighters = [];
-    this.graph = graph;
   }
 
   incrementScore() {
@@ -20,7 +19,6 @@ class Node {
   }
 
   captureNode(owner) {
-    // console.log('node captured');
     this.owner = owner;
     this.color = owner === 'Player1' ? 'red' : 'yellow';
   }
@@ -36,7 +34,7 @@ class Node {
   }
 
   createFighter(destinationNode) {
-    const fighter = new Fighter(1, this.x, this.y, this, destinationNode, this.owner, this.graph);
+    const fighter = new Fighter(1, this.x, this.y, this, destinationNode, this.owner);
     this.fighters.push(fighter);
   }
 

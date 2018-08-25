@@ -1,75 +1,47 @@
 import React from 'react';
-import randomGraph from './exampleGraph';
 import Draw from './drawHelpers';
 import { validateNodeClicked } from '../../helpers';
+import socket from '../socket';
 
 class Game extends React.Component {
   constructor() {
     super();
     this.state = {
-      graph: null,
-      firstNodeClicked: null,
+      playerName: 'Nick',
     };
   }
 
   componentDidMount() {
-    const canvas = document.getElementsByClassName('gameboard');
-    const sampleGraph = randomGraph.exampleGraph();
-    const canvasLeft = canvas[0].offsetLeft;
-    const canvasTop = canvas[0].offsetTop;
+    this.addEventListenerForClickEvents();
+    this.handleServerTransmissions();
+  }
+
+  handleServerTransmissions() {
+    const self = this; // remove this
+    socket.on('gamestate', (clientPacket) => {
+      const canvas = document.getElementsByClassName('gameboard');
+      Draw.drawGraph(clientPacket.gameState, canvas);
+    });
+  }
+
+  addEventListenerForClickEvents() {
+    const { playerName } = this.state;
+    const canvas = document.getElementsByClassName('gameboard')[0];
 
     // Add event listener for `click` events.
-    canvas[0].addEventListener(
+    canvas.addEventListener(
       'click',
       (e) => {
-        const x = e.pageX - canvasLeft;
-        const y = e.pageY - canvasTop;
-
-        // Collision detection between clicked offset and element.
-        sampleGraph.nodes.forEach((node) => {
-          if (validateNodeClicked(node, x, y)) {
-            const { firstNodeClicked } = this.state;
-            if (firstNodeClicked) {
-              if (node.id === firstNodeClicked.id) {
-                return;
-              }
-              firstNodeClicked.toggleSelectNode();
-              this.setState({ firstNodeClicked: null });
-              firstNodeClicked.createFighters(firstNodeClicked.score / 2, node);
-            } else if (node.score !== 0) {
-              this.setState({ firstNodeClicked: node });
-              node.toggleSelectNode();
-            }
-          }
-        });
+        socket.emit('click', { x: e.x, y: e.y, player: playerName });
       },
       false,
     );
-
-    this.setState({ graph: sampleGraph });
-    setInterval(() => {
-      this.animateLoop(canvas);
-    }, 1000 / 60);
-  }
-
-  animateLoop(canvas) {
-    const { graph } = this.state;
-    for (let i = 0; i < graph.nodes.length; i += 1) {
-      graph.nodes[i].incrementScore();
-    }
-    const ctx = canvas[0].getContext('2d');
-    Draw.drawGraph(graph, ctx);
-    this.setState({ graph });
   }
 
   render() {
-    return (
-      <canvas
-        width={window.innerWidth - window.innerWidth * 0.05}
-        height={window.innerHeight - window.innerHeight * 0.05}
-        className="gameboard"
-      />
-    );
+    const width = window.innerWidth - window.innerWidth * 0.05;
+    const height = window.innerHeight - window.innerHeight * 0.05;
+    return <canvas width={width} height={height} className="gameboard" />;
   }
 }
 
