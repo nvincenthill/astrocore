@@ -1,12 +1,14 @@
 # AstroCore
 
-> This is mobile web game.
+> This is mobile-first multiplayer sci-fi game (MERN stack app with socket.io).
 
 ## Table of Contents
 
-1.  [Usage](#Usage)
+1.  [Usage](#usage)
 1.  [Requirements](#requirements)
 1.  [Development](#development)
+1.  [Contribute](#contribute)
+1.  [Collaborators](#collaborators)
 
 ## Usage
 
@@ -18,6 +20,7 @@
 
 - CSS
 - HTML5
+- Socket.io
 - React.js
 - Node.js
 - Express
@@ -26,7 +29,7 @@
 - Jest
 - Enzyme
 
-- Trello
+- [Trello](https://trello.com/b/Ty4FdHbj/dev-projects 'Trello board')
 
 ## Requirements
 
@@ -65,6 +68,10 @@ To run tests
 ```sh
 npm test
 ```
+
+## Contribute
+
+Check out our [Trello](https://trello.com/b/Ty4FdHbj/dev-projects 'Trello board') to see what we're actively implementing. Take a ticket and submit a pull request with tests.
 
 ## Collaborators
 
