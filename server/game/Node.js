@@ -16,6 +16,7 @@ class Node {
   incrementScore() {
     if (this.score < 100 && this.score !== 0) {
       this.score += 0.025;
+      this.radius = 20 + this.score / 3;
     }
   }
 
