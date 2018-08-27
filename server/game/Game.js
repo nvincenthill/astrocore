@@ -13,7 +13,6 @@ class Game {
   }
 
   handleGameLoop() {
-    // move fighters
     this.state.nodes.forEach((node) => {
       node.incrementScore();
       node.fighters.forEach((fighter) => {

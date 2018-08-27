@@ -24,14 +24,9 @@ const drawNode = (ctx, node) => {
 const drawFighter = (ctx, fighter) => {
   const { radius } = fighter;
   ctx.beginPath();
-
   ctx.shadowBlur = 40;
-
-  // color based on fighter owner
-
   ctx.fillStyle = fighter.color;
   ctx.shadowColor = fighter.color;
-
   ctx.arc(fighter.x, fighter.y, radius, 0, 2 * Math.PI);
   ctx.fill();
   ctx.closePath();
@@ -39,7 +34,7 @@ const drawFighter = (ctx, fighter) => {
 
 const drawEdge = (ctx, startNode, endNode) => {
   ctx.beginPath();
-  ctx.setLineDash([10, 10]);
+  // ctx.setLineDash([10, 10]);
   ctx.lineWidth = 3;
   ctx.strokeStyle = 'white';
   ctx.fillStyle = 'white';

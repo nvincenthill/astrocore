@@ -16,6 +16,7 @@ class Fighter {
   }
 
   calcVelocity() {
+    console.log('cal velocity');
     const xDiff = this.destX - this.x;
     const yDiff = this.destY - this.y;
     const speedDelimiter = Math.sqrt(xDiff * xDiff + yDiff * yDiff);
