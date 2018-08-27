@@ -1,13 +1,14 @@
 class Fighter {
   constructor(id, x, y, originNode, destinationNode, owner) {
     this.id = id;
+    this.radius = 5;
     this.x = x;
     this.y = y;
     this.destinationNode = destinationNode;
     this.owner = owner;
     this.destX = destinationNode.x;
     this.destY = destinationNode.y;
-    this.velocity = 3; // graph.hasEdge(originNode.id, destinationNode.id) ? 5 : 3
+    this.velocity = 5; // graph.hasEdge(originNode.id, destinationNode.id) ? 5 : 3
     [this.velocityX, this.velocityY] = this.calcVelocity();
     this.isAlive = true;
   }
