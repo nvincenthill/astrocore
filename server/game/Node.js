@@ -1,11 +1,12 @@
 const { Fighter } = require('./Fighter');
 
 class Node {
-  constructor(id, x, y, score, color, owner, graph) {
+  constructor(id, x, y, score, color, owner) {
     this.id = id;
     this.x = x;
     this.y = y;
     this.score = score;
+    this.radius = 20 + this.score / 3;
     this.color = color;
     this.owner = owner;
     this.selected = false;
