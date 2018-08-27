@@ -22,7 +22,7 @@ const drawNode = (ctx, node) => {
 };
 
 const drawFighter = (ctx, fighter) => {
-  const radius = 10;
+  const { radius } = fighter;
   ctx.beginPath();
 
   ctx.shadowBlur = 40;
@@ -44,10 +44,10 @@ const drawFighter = (ctx, fighter) => {
 const drawEdge = (ctx, startNode, endNode) => {
   ctx.beginPath();
   // ctx.setLineDash([10, 10]);
-  ctx.lineWidth = 10;
+  ctx.lineWidth = 3;
   ctx.strokeStyle = 'white';
   ctx.fillStyle = 'white';
-  ctx.shadowBlur = 20;
+  ctx.shadowBlur = 5;
   ctx.shadowColor = 'white';
   ctx.moveTo(startNode.x, startNode.y);
   ctx.lineTo(endNode.x, endNode.y);
