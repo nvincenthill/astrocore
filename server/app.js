@@ -7,9 +7,6 @@ const io = require('socket.io')(server);
 const Game = require('./game/Game');
 const createInitialGameState = require('./game/exampleGame');
 
-// game logic
-const { validateClick } = require('./helpers');
-
 server.listen(process.env.PORT);
 console.log(`listening on port ${process.env.PORT}...`);
 
@@ -26,13 +23,12 @@ io.on('connection', (socket) => {
 
   // handle new player creation
   socket.on('new player', (data) => {
-    console.log('adding a new player');
+    console.log('adding a new player', data);
     game.addPlayer(data.name);
   });
   // handle clicks
-  socket.on('click', (data) => {
-    console.log('heard a click');
-    validateClick(game, data.x, data.y, data.player);
+  socket.on('click', (click) => {
+    game.validateClick(click.x, click.y, click.player);
   });
 });
 

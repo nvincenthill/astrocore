@@ -1,11 +1,13 @@
 class Fighter {
-  constructor(id, x, y, originNode, destinationNode, owner) {
+  constructor(id, x, y, originNode, destinationNode, owner, color) {
     this.id = id;
     this.radius = 5;
     this.x = x;
     this.y = y;
     this.destinationNode = destinationNode;
+    this.originNode = originNode;
     this.owner = owner;
+    this.color = color;
     this.destX = destinationNode.x;
     this.destY = destinationNode.y;
     this.velocity = 5; // graph.hasEdge(originNode.id, destinationNode.id) ? 5 : 3
@@ -27,7 +29,7 @@ class Fighter {
 
       // kill if off screen
       // TODO: refactor for dynamic screen widths
-      if (this.x > 1000 || this.y > 1000) {
+      if (this.x > 375 || this.y > 812) {
         this.kill();
       }
 

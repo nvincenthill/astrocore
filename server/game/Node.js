@@ -36,13 +36,15 @@ class Node {
   }
 
   createFighter(destinationNode) {
-    const fighter = new Fighter(1, this.x, this.y, this, destinationNode, this.owner);
+    const fighter = new Fighter(1, this.x, this.y, this, destinationNode, this.owner, this.color);
+    console.log('pushing fighter');
     this.fighters.push(fighter);
   }
 
   createFighters(n, destinationNode) {
     for (let i = 0; i < n; i += 1) {
       setTimeout(() => {
+        console.log('creating fighter');
         this.createFighter(destinationNode);
         this.score -= 1;
       }, i * 100);

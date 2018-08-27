@@ -8,7 +8,7 @@ class Applet extends React.Component {
     this.state = {
       gameState: {
         isGamePlaying: false,
-        playerName: 'Player1',
+        playerName: 'PlayerOne',
       },
     };
   }
@@ -42,10 +42,10 @@ AstroCore
 
     return (
       <div className="game">
-        <div className="clouds" />
+        {/* <div className="clouds" /> */}
         {gameState.isGamePlaying ? game : startButton}
         <div className="stars" />
-        <div className="twinkling" />
+        {/* <div className="twinkling" /> */}
       </div>
     );
   }

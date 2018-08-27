@@ -27,7 +27,6 @@ class Game {
   }
 
   addPlayer(name) {
-    console.log('adding player', name);
     if (this.playerOne.name === null) {
       this.playerOne.name = name;
     } else if (this.playerTwo.name === null) {
@@ -37,20 +36,65 @@ class Game {
     }
   }
 
-  selectNode(node, owner) {
-    console.log(owner, this.playerOne.name);
-    if (owner === this.playerOne.name) {
-      console.log('selecting node for playerOne');
-      this.playerOne.selectedNode = node;
-    } else {
-      console.log('selecting node for playerTwo');
-      this.playerTwo.selectedNode = node;
-    }
-    node.toggleSelectNode();
+  validateClick(x, y, clicker) {
+    this.state.nodes.forEach((node) => {
+      if (this.validateNodeClicked(node, x, y)) {
+        this.handleNodeClick(node, clicker);
+      }
+    });
   }
 
-  deselectNode(owner) {
-    if (owner === this.playerOne.name) {
+  validateNodeClicked(node, x, y) {
+    const clickRadius = 20 + node.radius;
+    if (
+      y < node.y + clickRadius
+      && y > node.y - clickRadius
+      && (x < node.x + clickRadius && x > node.x - clickRadius)
+    ) {
+      return true;
+    }
+    return false;
+  }
+
+  handleNodeClick(node, clicker) {
+    console.log('handling node clicked');
+    if (clicker === this.playerOne.name) {
+      if (this.playerOne.selectedNode) {
+        console.log('launching playerOne fighters');
+        const numberOfFighters = this.playerOne.selectedNode.score / 2;
+        this.playerOne.selectedNode.createFighters(numberOfFighters, node);
+        this.deselectNode(clicker);
+      } else {
+        this.selectNode(node, clicker);
+      }
+    } else if (clicker === this.playerTwo.name) {
+      if (this.playerTwo.selectedNode) {
+        console.log('launching playerTwo fighters');
+        const numberOfFighters = this.playerTwo.selectedNode.score / 2;
+        this.playerTwo.selectedNode.createFighters(numberOfFighters, node);
+        this.deselectNode(clicker);
+      } else {
+        this.selectNode(node, clicker);
+      }
+    }
+  }
+
+  selectNode(node, clicker) {
+    console.log(clicker, this.playerOne.name);
+    if (clicker === node.owner) {
+      if (clicker === this.playerOne.name) {
+        console.log('selecting node for playerOne');
+        this.playerOne.selectedNode = node;
+      } else if (clicker === this.playerTwo.name) {
+        console.log('selecting node for playerTwo');
+        this.playerTwo.selectedNode = node;
+      }
+      node.toggleSelectNode();
+    }
+  }
+
+  deselectNode(clicker) {
+    if (clicker === this.playerOne.name) {
       this.playerOne.selectedNode.toggleSelectNode();
       this.playerOne.selectedNode = null;
     } else {

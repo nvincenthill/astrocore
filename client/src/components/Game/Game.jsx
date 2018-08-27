@@ -5,9 +5,6 @@ import socket from '../socket';
 class Game extends React.Component {
   constructor() {
     super();
-    this.state = {
-      playerName: 'Player1',
-    };
   }
 
   componentDidMount() {
@@ -27,14 +24,14 @@ class Game extends React.Component {
   }
 
   addEventListenerForClickEvents() {
-    const { playerName } = this.state;
+    const { gameState } = this.props;
     const canvas = document.getElementsByClassName('gameboard')[0];
 
     // Add event listener for `click` events.
     canvas.addEventListener(
       'click',
       (e) => {
-        socket.emit('click', { x: e.x, y: e.y, player: playerName });
+        socket.emit('click', { x: e.x, y: e.y, player: gameState.playerName });
       },
       false,
     );

@@ -28,13 +28,9 @@ const drawFighter = (ctx, fighter) => {
   ctx.shadowBlur = 40;
 
   // color based on fighter owner
-  if (fighter.owner === 'Player1') {
-    ctx.fillStyle = 'red';
-    ctx.shadowColor = 'red';
-  } else {
-    ctx.fillStyle = 'yellow';
-    ctx.shadowColor = 'yellow';
-  }
+
+  ctx.fillStyle = fighter.color;
+  ctx.shadowColor = fighter.color;
 
   ctx.arc(fighter.x, fighter.y, radius, 0, 2 * Math.PI);
   ctx.fill();
