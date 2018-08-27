@@ -46,29 +46,35 @@ const game = {
   },
 };
 
+// handle new connection
 io.on('connection', (socket) => {
-  const fps = 30;
-  const clientPacket = {};
-
+  console.log('heard a new connection');
+  // create game
+  // create new client
   // handle new player creation
   socket.on('new player', (data) => {
+    console.log('adding a new player');
     game.addPlayer(data.name);
   });
-
   // handle clicks
   socket.on('click', (data) => {
+    console.log('heard a click');
     validateClicks(game, data.x, data.y);
   });
-
-  // handle client disconnects
-  socket.on('disconnect', () => {
-    // remove disconnected player
-  });
-
-  // event loop
-  setInterval(() => {
-    game.handleGameLoop();
-    clientPacket.gameState = game.gameState;
-    socket.emit('gamestate', clientPacket);
-  }, 1000 / fps);
 });
+
+// handle client disconnects
+io.on('disconnect', () => {
+  // remove disconnected player
+  console.log('heard a disconnect');
+});
+
+const fps = 60;
+const clientPacket = {};
+
+// event loop
+setInterval(() => {
+  game.handleGameLoop();
+  clientPacket.gameState = game.gameState;
+  io.emit('gamestate', clientPacket);
+}, 1000 / fps);
