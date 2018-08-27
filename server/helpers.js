@@ -1,6 +1,9 @@
 const validateNodeClicked = (node, x, y) => {
-  const radius = 20 + node.score / 1.6;
-  if (y < node.y + radius && y > node.y - radius && (x < node.x + radius && x > node.x - radius)) {
+  const clickRadius = 20 + node.radius;
+  if (y < node.y + clickRadius
+    && y > node.y - clickRadius
+    && (x < node.x + clickRadius
+      && x > node.x - clickRadius)) {
     return true;
   }
   return false;

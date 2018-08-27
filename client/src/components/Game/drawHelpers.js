@@ -7,7 +7,7 @@ const drawNode = (ctx, node) => {
     radius, color, x, y, score,
   } = node;
   ctx.beginPath();
-  ctx.fillStyle = node.color;
+  ctx.fillStyle = color;
   ctx.font = '20px Arial';
   ctx.textAlign = 'center';
   ctx.textBaseline = 'middle';
