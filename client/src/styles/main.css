@@ -119,7 +119,7 @@ button:focus {
       background-position: 0 0;
     }
     to {
-      background-position: 10000px 0;
+      background-position: 0 10000px;
     }
   }
   @-webkit-keyframes move-clouds-back {
@@ -127,7 +127,7 @@ button:focus {
       background-position: 0 0;
     }
     to {
-      background-position: 10000px 0;
+      background-position: 0 10000px;
     }
   }
   @-moz-keyframes move-clouds-back {
@@ -135,7 +135,7 @@ button:focus {
       background-position: 0 0;
     }
     to {
-      background-position: 10000px 0;
+      background-position: 0 10000px;
     }
   }
   @-ms-keyframes move-clouds-back {
@@ -143,7 +143,7 @@ button:focus {
       background-position: 0;
     }
     to {
-      background-position: 10000px 0;
+      background-position: 0 10000px;
     }
   }
 
@@ -182,6 +182,7 @@ button:focus {
     background: transparent url(http://www.script-tutorials.com/demos/360/images/clouds3.png) repeat
       top center;
     z-index: 3;
+    transform: rotate(90deg);
 
     -moz-animation: move-clouds-back 200s linear infinite;
     -ms-animation: move-clouds-back 200s linear infinite;

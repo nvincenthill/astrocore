@@ -1,6 +1,6 @@
 const { Graph } = require('./Graph');
 
-const exampleGraph = (width, height) => {
+const createInitialGameState = (width, height) => {
   const newGraph = new Graph();
   const adjacencyMatrix = [
     [false, true, true, true, true, false, false, false, false, false],
@@ -43,14 +43,18 @@ const exampleGraph = (width, height) => {
   const points = [100, 30, 20, 10, 0, 0, 10, 20, 30, 100].map(x => x / 3);
   for (let i = 0; i < num; i += 1) {
     let color;
+    let owner;
 
-    const owner = i > 4 ? 'Player1' : 'Player2';
     if (points[i] === 0) {
       color = 'white';
-    } else {
-      color = owner === 'Player1' ? 'red' : 'yellow';
+      owner = null;
+    } else if (i < 4) {
+      color = 'red';
+      owner = 'PlayerOne';
+    } else if (i > 5) {
+      color = 'yellow';
+      owner = 'PlayerTwo';
     }
-
     newGraph.addNode(i, widths[i], heights[i], points[i], color, owner);
   }
 
@@ -64,6 +68,4 @@ const exampleGraph = (width, height) => {
   return newGraph;
 };
 
-module.exports = {
-  exampleGraph,
-};
+module.exports = createInitialGameState;
