@@ -14,7 +14,8 @@ app.use(express.static('public/'));
 app.use(express.static('client/dist'));
 
 // create game
-const initialGameState = createInitialGameState(375, 812); // pass width and height of client viewport
+// TODO: Refactor to pass width and height of client viewport
+const initialGameState = createInitialGameState(375, 812);
 const game = new Game(initialGameState);
 
 // handle new connection

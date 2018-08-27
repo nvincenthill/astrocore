@@ -21,30 +21,53 @@ class Node {
     }
   }
 
+  incrementScoreByOne() {
+    this.score += 1;
+    this.radius += 1;
+  }
+
+  decrementScoreByOne() {
+    this.score -= 1;
+    this.radius -= 1;
+  }
+
   captureNode(owner) {
     this.owner = owner;
-    this.color = owner === 'Player1' ? 'red' : 'yellow';
+    this.color = owner === 'PlayerOne' ? 'red' : 'yellow';
   }
 
   toggleSelectNode() {
     if (!this.isSelected) {
       this.color = 'blue';
       this.isSelected = true;
+    } else if (this.owner === null) {
+      this.color = 'white';
     } else {
-      this.color = this.initialColor;
+      this.color = this.owner === 'PlayerOne' ? 'red' : 'yellow';
     }
   }
 
   createFighter(destinationNode) {
-    const fighter = new Fighter(1, this.x, this.y, this, destinationNode, this.owner, this.color);
-    console.log('pushing fighter');
+    const oriXY = [this.x, this.y];
+    const tarXY = [destinationNode.x, destinationNode.y];
+    const tarId = destinationNode.id;
+    const fighterProps = {
+      x: this.x,
+      y: this.y,
+      originNodePts: oriXY,
+      targetNodePts: tarXY,
+      originId: this.id,
+      targetId: tarId,
+      owner: this.owner,
+      color: this.color,
+    };
+    const fighter = new Fighter(fighterProps);
     this.fighters.push(fighter);
   }
 
   createFighters(n, destinationNode) {
     for (let i = 0; i < n; i += 1) {
       setTimeout(() => {
-        console.log('creating fighter');
         this.createFighter(destinationNode);
         this.score -= 1;
       }, i * 100);

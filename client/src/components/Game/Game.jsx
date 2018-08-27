@@ -3,11 +3,8 @@ import Draw from './drawHelpers';
 import socket from '../socket';
 
 class Game extends React.Component {
-  constructor() {
-    super();
-  }
-
   componentDidMount() {
+    prompt('Enter your name', name);
     this.addEventListenerForClickEvents();
     this.handleServerTransmissions();
   }
