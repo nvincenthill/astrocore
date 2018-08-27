@@ -4,7 +4,8 @@ import socket from '../socket';
 
 class Game extends React.Component {
   componentDidMount() {
-    prompt('Enter your name', name);
+    const { initialServerHandShake } = this.props;
+    initialServerHandShake();
     this.addEventListenerForClickEvents();
     this.handleServerTransmissions();
   }

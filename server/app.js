@@ -29,6 +29,7 @@ io.on('connection', (socket) => {
   });
   // handle clicks
   socket.on('click', (click) => {
+    console.log(`click from ${click.player}`);
     game.validateClick(click.x, click.y, click.player);
   });
 });

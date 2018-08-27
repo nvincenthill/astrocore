@@ -58,6 +58,7 @@ class Game {
   }
 
   handleNodeClick(node, clicker) {
+    console.log(clicker);
     if (clicker === this.playerOne.name) {
       if (this.playerOne.selectedNode && node.id !== this.playerOne.selectedNode.id) {
         const numberOfFighters = this.playerOne.selectedNode.score / 2;
