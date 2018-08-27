@@ -3,11 +3,9 @@ import Draw from './drawHelpers';
 import socket from '../socket';
 
 class Game extends React.Component {
-  constructor() {
-    super();
-  }
-
   componentDidMount() {
+    const { initialServerHandShake } = this.props;
+    initialServerHandShake();
     this.addEventListenerForClickEvents();
     this.handleServerTransmissions();
   }

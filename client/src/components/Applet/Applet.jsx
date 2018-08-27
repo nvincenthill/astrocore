@@ -11,6 +11,15 @@ class Applet extends React.Component {
         playerName: 'PlayerOne',
       },
     };
+
+    this.setName = this.setName.bind(this);
+    this.initialServerHandShake = this.initialServerHandShake.bind(this);
+  }
+
+  setName(name) {
+    const { gameState } = this.state;
+    gameState.playerName = name;
+    this.setState({ gameState });
   }
 
   handleGameStart() {
@@ -21,8 +30,13 @@ class Applet extends React.Component {
     const { gameState } = this.state;
     gameState.isGamePlaying = !gameState.isGamePlaying;
     this.setState({ gameState });
+  }
+
+  initialServerHandShake() {
+    const name = prompt('Enter your name');
+    this.setName(name);
     const playerInformation = {};
-    playerInformation.name = gameState.playerName;
+    playerInformation.name = name;
     socket.emit('new player', playerInformation);
   }
 
@@ -38,7 +52,9 @@ AstroCore
       </React.Fragment>
     );
     const { gameState } = this.state;
-    const game = <Game gameState={gameState} />;
+    const game = (
+      <Game gameState={gameState} initialServerHandShake={this.initialServerHandShake} />
+    );
 
     return (
       <div className="game">

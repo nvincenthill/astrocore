@@ -1,22 +1,21 @@
 class Fighter {
-  constructor(id, x, y, originNode, destinationNode, owner, color) {
-    this.id = id;
-    this.radius = 5;
-    this.x = x;
-    this.y = y;
-    this.destinationNode = destinationNode;
-    this.originNode = originNode;
-    this.owner = owner;
-    this.color = color;
-    this.destX = destinationNode.x;
-    this.destY = destinationNode.y;
-    this.velocity = 5; // graph.hasEdge(originNode.id, destinationNode.id) ? 5 : 3
-    [this.velocityX, this.velocityY] = this.calcVelocity();
+  constructor(fighterProps) {
+    this.radius = 10;
+    this.x = fighterProps.x;
+    this.y = fighterProps.y;
+    this.originId = fighterProps.originId;
+    this.targetId = fighterProps.targetId;
+    this.targetNodePts = fighterProps.targetNodePts;
+    [this.originNodeX, this.originNodeY] = fighterProps.originNodePts;
+    [this.destX, this.destY] = fighterProps.targetNodePts;
+    this.owner = fighterProps.owner;
+    this.color = fighterProps.color;
+    this.velocity = 5; // graph.hasEdge(originNode.id, targetNode.id) ? 5 : 3
+    [this.velocityX, this.velocityY] = this.calcVelocityVectors();
     this.isAlive = true;
   }
 
-  calcVelocity() {
-    console.log('cal velocity');
+  calcVelocityVectors() {
     const xDiff = this.destX - this.x;
     const yDiff = this.destY - this.y;
     const speedDelimiter = Math.sqrt(xDiff * xDiff + yDiff * yDiff);
@@ -27,27 +26,38 @@ class Fighter {
     if (this.isAlive) {
       this.x += this.velocityX;
       this.y += this.velocityY;
+    }
+  }
 
-      // kill if off screen
-      // TODO: refactor for dynamic screen widths
-      if (this.x > 375 || this.y > 812) {
-        this.kill();
-      }
+  validateCollisions(gameState) {
+    if (Math.abs(this.x - this.destX) < 10 && Math.abs(this.y - this.destY) < 10) {
+      this.kill();
+      this.mutateTargetNode(gameState);
+    }
+  }
 
-      // kill if it impact node
-      if (Math.abs(this.x - this.destX) < 10 && Math.abs(this.y - this.destY) < 10) {
-        this.kill();
-        if (Math.floor(this.destinationNode.score) === 0) {
-          this.destinationNode.captureNode(this.owner);
+  mutateTargetNode(gameState) {
+    gameState.nodes.forEach((node) => {
+      if (this.targetId === node.id) {
+        if (Math.floor(node.score) === 0) {
+          node.captureNode(this.owner);
         }
-        if (this.owner === this.destinationNode.owner || this.owner === null) {
-          if (this.destinationNode.score < 100) {
-            this.destinationNode.score += 1;
+        if (this.owner === node.owner || this.owner === null) {
+          if (node.score < 100) {
+            node.incrementScoreByOne();
           }
         } else {
-          this.destinationNode.score -= 1;
+          node.decrementScoreByOne();
         }
       }
+    });
+  }
+
+  handleUpdate(gameState) {
+    this.move();
+    this.validateCollisions(gameState);
+    if (!this.isAlive) {
+      delete this;
     }
   }
 

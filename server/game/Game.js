@@ -17,7 +17,7 @@ class Game {
       node.incrementScore();
       node.fighters.forEach((fighter) => {
         if (fighter.isAlive) {
-          fighter.move();
+          fighter.handleUpdate(this.state);
         }
       });
     });
@@ -27,9 +27,11 @@ class Game {
 
   addPlayer(name) {
     if (this.playerOne.name === null) {
+      console.log('Adding PlayerOne');
       this.playerOne.name = name;
     } else if (this.playerTwo.name === null) {
-      this.playerTwo.name = name;
+      console.log('Adding PlayerTwo');
+      this.playerTwo.name = 'PlayerTwo'; // TODO: Fix this tech debt
     } else {
       console.log('Game is full - cannot add player');
     }
@@ -56,10 +58,9 @@ class Game {
   }
 
   handleNodeClick(node, clicker) {
-    console.log('handling node clicked');
+    console.log(clicker);
     if (clicker === this.playerOne.name) {
-      if (this.playerOne.selectedNode) {
-        console.log('launching playerOne fighters');
+      if (this.playerOne.selectedNode && node.id !== this.playerOne.selectedNode.id) {
         const numberOfFighters = this.playerOne.selectedNode.score / 2;
         this.playerOne.selectedNode.createFighters(numberOfFighters, node);
         this.deselectNode(clicker);
@@ -67,8 +68,7 @@ class Game {
         this.selectNode(node, clicker);
       }
     } else if (clicker === this.playerTwo.name) {
-      if (this.playerTwo.selectedNode) {
-        console.log('launching playerTwo fighters');
+      if (this.playerTwo.selectedNode && node.id !== this.playerTwo.selectedNode.id) {
         const numberOfFighters = this.playerTwo.selectedNode.score / 2;
         this.playerTwo.selectedNode.createFighters(numberOfFighters, node);
         this.deselectNode(clicker);
@@ -79,7 +79,6 @@ class Game {
   }
 
   selectNode(node, clicker) {
-    console.log(clicker, this.playerOne.name);
     if (clicker === node.owner) {
       if (clicker === this.playerOne.name) {
         console.log('selecting node for playerOne');
