@@ -3,19 +3,21 @@ const resetCanvas = (ctx) => {
 };
 
 const drawNode = (ctx, node) => {
-  const radius = 20 + node.score / 3;
+  const {
+    radius, color, x, y, score,
+  } = node;
   ctx.beginPath();
   ctx.fillStyle = node.color;
   ctx.font = '20px Arial';
   ctx.textAlign = 'center';
   ctx.textBaseline = 'middle';
   ctx.shadowBlur = 20;
-  ctx.shadowColor = node.color;
-  ctx.arc(node.x, node.y, radius, 0, 2 * Math.PI);
+  ctx.shadowColor = color;
+  ctx.arc(x, y, radius, 0, 2 * Math.PI);
   ctx.fill();
   ctx.fillStyle = 'black';
   ctx.shadowBlur = 0;
-  ctx.fillText(Math.floor(node.score), node.x, node.y);
+  ctx.fillText(Math.floor(score), x, y);
   ctx.closePath();
 };
 
