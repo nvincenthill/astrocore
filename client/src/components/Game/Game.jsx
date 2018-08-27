@@ -20,7 +20,10 @@ class Game extends React.Component {
     const self = this; // remove this
     socket.on('gamestate', (clientPacket) => {
       const canvas = document.getElementsByClassName('gameboard');
-      Draw.drawGraph(clientPacket.gameState, canvas);
+
+      window.requestAnimationFrame(() => {
+        Draw.drawGraph(clientPacket.gameState, canvas);
+      });
     });
   }
 
