@@ -40,7 +40,7 @@ const exampleGraph = (width, height) => {
     width * (1 - 0.7),
   ];
 
-  const points = [100, 30, 20, 10, 0, 0, 10, 20, 30, 100];
+  const points = [100, 30, 20, 10, 0, 0, 10, 20, 30, 100].map(x => x / 3);
   for (let i = 0; i < num; i += 1) {
     let color;
 
