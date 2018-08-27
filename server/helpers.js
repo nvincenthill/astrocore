@@ -10,26 +10,25 @@ const validateNodeClicked = (node, x, y) => {
   return false;
 };
 
-const validateClicks = (game, x, y) => {
-  // game.gameState.nodes.forEach((node) => {
-  //   if (validateNodeClicked(node, x, y)) {
-  //     const { firstNodeClicked } = game;
-  //     if (firstNodeClicked) {
-  //       if (node.id === firstNodeClicked.id) {
-  //         return;
-  //       }
-  //       firstNodeClicked.toggleSelectNode();
-  //       game.firstNodeClicked = null;
-  //       firstNodeClicked.createFighters(firstNodeClicked.score / 2, node);
-  //     } else if (node.score !== 0) {
-  //       game.firstNodeClicked = node;
-  //       node.toggleSelectNode();
-  //     }
-  //   }
-  // });
+// TODO: Refactor to handle clicks dynamically by owner of node and click
+const validateClick = (game, x, y, owner) => {
+  console.log('validating clicks');
+  game.state.nodes.forEach((node) => {
+    if (validateNodeClicked(node, x, y)) {
+      console.log('node was clicked');
+      if (game.playerOne.selectedNode === null) {
+        game.selectNode(node, owner);
+      } else {
+        console.log('launching fighters');
+        const numberOfFighters = node.score / 2;
+        game.playerOne.selectedNode.createFighters(numberOfFighters, node);
+        game.deselectNode(owner);
+      }
+    }
+  });
 };
 
 module.exports = {
   validateNodeClicked,
-  validateClicks,
+  validateClick,
 };

@@ -1,13 +1,12 @@
 import React from 'react';
 import Draw from './drawHelpers';
-import { validateNodeClicked } from '../../helpers';
 import socket from '../socket';
 
 class Game extends React.Component {
   constructor() {
     super();
     this.state = {
-      playerName: 'Nick',
+      playerName: 'Player1',
     };
   }
 

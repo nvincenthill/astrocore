@@ -7,6 +7,7 @@ class Node {
     this.y = y;
     this.score = score;
     this.radius = 20 + this.score / 3;
+    this.initialColor = color;
     this.color = color;
     this.owner = owner;
     this.selected = false;
@@ -30,8 +31,7 @@ class Node {
       this.color = 'blue';
       this.isSelected = true;
     } else {
-      this.color = this.owner === 'Player1' ? 'red' : 'yellow';
-      this.isSelected = false;
+      this.color = this.initialColor;
     }
   }
 

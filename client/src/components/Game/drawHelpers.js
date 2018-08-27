@@ -43,7 +43,7 @@ const drawFighter = (ctx, fighter) => {
 
 const drawEdge = (ctx, startNode, endNode) => {
   ctx.beginPath();
-  // ctx.setLineDash([10, 10]);
+  ctx.setLineDash([10, 10]);
   ctx.lineWidth = 3;
   ctx.strokeStyle = 'white';
   ctx.fillStyle = 'white';
