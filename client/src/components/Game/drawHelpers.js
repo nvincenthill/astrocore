@@ -3,7 +3,7 @@ const resetCanvas = (ctx) => {
 };
 
 const drawNode = (ctx, node) => {
-  const radius = 20 + node.score / 1.6;
+  const radius = 20 + node.score / 3;
   ctx.beginPath();
   ctx.fillStyle = node.color;
   ctx.font = '20px Arial';
