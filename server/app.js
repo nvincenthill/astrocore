@@ -19,6 +19,7 @@ const initialGameState = createInitialGameState(375, 812);
 const game = new Game(initialGameState);
 
 // handle new connection
+// TODO: Refactor socket.io new connection logic
 io.on('connection', (socket) => {
   console.log('heard a new connection');
 

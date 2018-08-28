@@ -25,13 +25,13 @@ class Game {
     // check for victory conditions
   }
 
+  // TODO: Fix this tech debt
   addPlayer(name) {
-    if (this.playerOne.name === null) {
+    if (name === 'PlayerOne') {
       console.log('Adding PlayerOne');
       this.playerOne.name = name;
-    } else if (this.playerTwo.name === null) {
-      console.log('Adding PlayerTwo');
-      this.playerTwo.name = 'PlayerTwo'; // TODO: Fix this tech debt
+    } else if (name === 'PlayerTwo') {
+      this.playerTwo.name = name;
     } else {
       console.log('Game is full - cannot add player');
     }
