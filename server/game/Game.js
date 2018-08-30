@@ -12,6 +12,7 @@ class Game {
     this.state = initialGameState;
   }
 
+  // TODO: separate concerns and refactor code
   handleGameLoop() {
     this.state.nodes.forEach((node) => {
       node.incrementScore();
