@@ -45,9 +45,13 @@ io.on('disconnect', () => {
 const fps = 60;
 const clientPacket = {};
 
-// event loop
-setInterval(() => {
-  game.handleGameLoop();
-  clientPacket.gameState = game.state;
-  io.emit('gamestate', clientPacket);
-}, 1000 / fps);
+const startGame = () => {
+  // event loop
+  setInterval(() => {
+    game.handleGameLoop();
+    clientPacket.gameState = game.state;
+    io.emit('gamestate', clientPacket);
+  }, 1000 / fps);
+};
+
+startGame();
