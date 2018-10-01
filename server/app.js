@@ -23,6 +23,7 @@ const game = new Game(initialGameState);
 io.on('connection', (socket) => {
   console.log('heard a new connection');
 
+  // TODO: Refactor client creation with Client class
   // handle new player creation
   socket.on('new player', (data) => {
     console.log('adding a new player', data);
