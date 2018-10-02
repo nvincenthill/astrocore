@@ -15,7 +15,7 @@ app.use(express.static('client/dist'));
 
 // create game
 // TODO: Refactor to pass width and height of client viewport
-const initialGameState = createInitialGameState(375, 812);
+const initialGameState = createInitialGameState();
 const game = new Game(initialGameState);
 
 // handle new connection
@@ -23,6 +23,7 @@ const game = new Game(initialGameState);
 io.on('connection', (socket) => {
   console.log('heard a new connection');
 
+  // TODO: Refactor client creation with Client class
   // handle new player creation
   socket.on('new player', (data) => {
     console.log('adding a new player', data);
@@ -30,7 +31,7 @@ io.on('connection', (socket) => {
   });
   // handle clicks
   socket.on('click', (click) => {
-    console.log(`click from ${click.player}`);
+    console.log(`click from ${click.player}`, click.x, click.y);
     game.validateClick(click.x, click.y, click.player);
   });
 });
@@ -44,9 +45,13 @@ io.on('disconnect', () => {
 const fps = 60;
 const clientPacket = {};
 
-// event loop
-setInterval(() => {
-  game.handleGameLoop();
-  clientPacket.gameState = game.state;
-  io.emit('gamestate', clientPacket);
-}, 1000 / fps);
+const startGame = () => {
+  // event loop
+  setInterval(() => {
+    game.handleGameLoop();
+    clientPacket.gameState = game.state;
+    io.emit('gamestate', clientPacket);
+  }, 1000 / fps);
+};
+
+startGame();

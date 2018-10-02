@@ -4,7 +4,7 @@ const resetCanvas = (ctx) => {
 
 const drawNode = (ctx, node) => {
   const {
-    radius, color, x, y, score,
+    color, x, y, score,
   } = node;
   ctx.beginPath();
   ctx.fillStyle = color;
@@ -13,11 +13,11 @@ const drawNode = (ctx, node) => {
   ctx.textBaseline = 'middle';
   ctx.shadowBlur = 20;
   ctx.shadowColor = color;
-  ctx.arc(x, y, radius, 0, 2 * Math.PI);
+  ctx.arc(window.innerWidth * x, window.innerHeight * y, 20 + score / 3 , 0, 2 * Math.PI);
   ctx.fill();
   ctx.fillStyle = 'black';
   ctx.shadowBlur = 0;
-  ctx.fillText(Math.floor(score), x, y);
+  ctx.fillText(Math.floor(score), window.innerWidth * x, window.innerHeight * y);
   ctx.closePath();
 };
 
@@ -27,7 +27,7 @@ const drawFighter = (ctx, fighter) => {
   ctx.shadowBlur = 40;
   ctx.fillStyle = fighter.color;
   ctx.shadowColor = fighter.color;
-  ctx.arc(fighter.x, fighter.y, radius, 0, 2 * Math.PI);
+  ctx.arc(fighter.x * window.innerWidth, fighter.y * window.innerHeight, radius, 0, 2 * Math.PI);
   ctx.fill();
   ctx.closePath();
 };
@@ -40,8 +40,8 @@ const drawEdge = (ctx, startNode, endNode) => {
   ctx.fillStyle = 'white';
   ctx.shadowBlur = 5;
   ctx.shadowColor = 'white';
-  ctx.moveTo(startNode.x, startNode.y);
-  ctx.lineTo(endNode.x, endNode.y);
+  ctx.moveTo(startNode.x * window.innerWidth, startNode.y * window.innerHeight);
+  ctx.lineTo(endNode.x * window.innerWidth, endNode.y * window.innerHeight);
   ctx.stroke();
   ctx.closePath();
 };
