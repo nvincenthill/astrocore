@@ -29,7 +29,9 @@ class Game extends React.Component {
     canvas.addEventListener(
       'click',
       (e) => {
-        socket.emit('click', { x: e.x, y: e.y, player: gameState.playerName });
+        const x = e.x / window.innerWidth;
+        const y = e.y / window.innerHeight;
+        socket.emit('click', { x, y, player: gameState.playerName });
       },
       false,
     );

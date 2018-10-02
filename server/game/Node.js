@@ -6,7 +6,6 @@ class Node {
     this.x = x;
     this.y = y;
     this.score = score;
-    this.radius = 20 + this.score / 3;
     this.initialColor = color;
     this.color = color;
     this.owner = owner;
@@ -17,18 +16,15 @@ class Node {
   incrementScore() {
     if (this.score < 100 && this.score !== 0) {
       this.score += 0.025;
-      this.radius = 20 + this.score / 3;
     }
   }
 
   incrementScoreByOne() {
     this.score += 1;
-    this.radius += 1;
   }
 
   decrementScoreByOne() {
     this.score -= 1;
-    this.radius -= 1;
   }
 
   captureNode(owner) {

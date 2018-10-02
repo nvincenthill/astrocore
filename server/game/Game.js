@@ -47,7 +47,7 @@ class Game {
   }
 
   validateNodeClicked(node, x, y) {
-    const clickRadius = 20 + node.radius;
+    const clickRadius = .1 + node.radius;
     if (
       y < node.y + clickRadius
       && y > node.y - clickRadius

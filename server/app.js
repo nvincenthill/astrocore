@@ -15,7 +15,7 @@ app.use(express.static('client/dist'));
 
 // create game
 // TODO: Refactor to pass width and height of client viewport
-const initialGameState = createInitialGameState(375, 812);
+const initialGameState = createInitialGameState();
 const game = new Game(initialGameState);
 
 // handle new connection
@@ -31,7 +31,7 @@ io.on('connection', (socket) => {
   });
   // handle clicks
   socket.on('click', (click) => {
-    console.log(`click from ${click.player}`);
+    console.log(`click from ${click.player}`, click.x, click.y);
     game.validateClick(click.x, click.y, click.player);
   });
 });
