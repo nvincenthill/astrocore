@@ -46,14 +46,13 @@ class Node {
   createFighter(destinationNode) {
     const oriXY = [this.x, this.y];
     const tarXY = [destinationNode.x, destinationNode.y];
-    const tarId = destinationNode.id;
     const fighterProps = {
       x: this.x,
       y: this.y,
       originNodePts: oriXY,
       targetNodePts: tarXY,
       originId: this.id,
-      targetId: tarId,
+      target: destinationNode,
       owner: this.owner,
       color: this.color,
     };

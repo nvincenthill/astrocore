@@ -8,13 +8,15 @@ const drawNode = (ctx, node) => {
   } = node;
   ctx.beginPath();
   ctx.fillStyle = color;
+  ctx.globalAlpha = 0.85;
   ctx.font = '20px Arial';
   ctx.textAlign = 'center';
   ctx.textBaseline = 'middle';
   ctx.shadowBlur = 20;
   ctx.shadowColor = color;
-  ctx.arc(window.innerWidth * x, window.innerHeight * y, 20 + score / 3 , 0, 2 * Math.PI);
+  ctx.arc(window.innerWidth * x, window.innerHeight * y, 20 + score / 3, 0, 2 * Math.PI);
   ctx.fill();
+  ctx.globalAlpha = 1;
   ctx.fillStyle = 'black';
   ctx.shadowBlur = 0;
   ctx.fillText(Math.floor(score), window.innerWidth * x, window.innerHeight * y);

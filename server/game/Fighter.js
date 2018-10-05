@@ -4,7 +4,7 @@ class Fighter {
     this.x = fighterProps.x;
     this.y = fighterProps.y;
     this.originId = fighterProps.originId;
-    this.targetId = fighterProps.targetId;
+    this.target = fighterProps.target;
     this.targetNodePts = fighterProps.targetNodePts;
     [this.originNodeX, this.originNodeY] = fighterProps.originNodePts;
     [this.destX, this.destY] = fighterProps.targetNodePts;
@@ -24,13 +24,14 @@ class Fighter {
 
   move() {
     if (this.isAlive) {
-      this.x += this.velocityX;
-      this.y += this.velocityY;
+      // TODO: Refactor for responsive velocity adjustment
+      this.x += this.velocityX / 1500;
+      this.y += this.velocityY / 1500;
     }
   }
 
   validateCollisions(gameState) {
-    if (Math.abs(this.x - this.destX) < 10 && Math.abs(this.y - this.destY) < 10) {
+    if (Math.abs(this.x - this.destX) < 0.01 && Math.abs(this.y - this.destY) < 0.01) {
       this.kill();
       this.mutateTargetNode(gameState);
     }
@@ -38,7 +39,7 @@ class Fighter {
 
   mutateTargetNode(gameState) {
     gameState.nodes.forEach((node) => {
-      if (this.targetId === node.id) {
+      if (this.target.id === node.id) {
         if (Math.floor(node.score) === 0) {
           node.captureNode(this.owner);
         }
