@@ -1,3 +1,5 @@
+const { validateNodeClicked } = require('../helpers');
+
 class Game {
   constructor(initialGameState) {
     this.playerOne = {
@@ -39,27 +41,16 @@ class Game {
   }
 
   validateClick(x, y, clicker) {
+    console.log('validating click');
     this.state.nodes.forEach((node) => {
-      if (this.validateNodeClicked(node, x, y)) {
+      if (validateNodeClicked(node, x, y)) {
         this.handleNodeClick(node, clicker);
       }
     });
   }
 
-  validateNodeClicked(node, x, y) {
-    const clickRadius = .1 + node.radius;
-    if (
-      y < node.y + clickRadius
-      && y > node.y - clickRadius
-      && (x < node.x + clickRadius && x > node.x - clickRadius)
-    ) {
-      return true;
-    }
-    return false;
-  }
-
   handleNodeClick(node, clicker) {
-    console.log(clicker);
+    console.log(`${clicker} clicked a node`);
     if (clicker === this.playerOne.name) {
       if (this.playerOne.selectedNode && node.id !== this.playerOne.selectedNode.id) {
         const numberOfFighters = this.playerOne.selectedNode.score / 2;
