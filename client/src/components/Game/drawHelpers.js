@@ -8,7 +8,7 @@ const drawNode = (ctx, node) => {
   } = node;
   ctx.beginPath();
   ctx.fillStyle = color;
-  ctx.globalAlpha = 0.85;
+  ctx.globalAlpha = 0.5;
   ctx.font = '20px Arial';
   ctx.textAlign = 'center';
   ctx.textBaseline = 'middle';

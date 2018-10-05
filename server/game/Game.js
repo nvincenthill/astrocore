@@ -1,16 +1,10 @@
 const { validateNodeClicked } = require('../helpers');
+const Client = require('./Client');
 
 class Game {
   constructor(initialGameState) {
-    this.playerOne = {
-      name: null,
-      selectedNode: null,
-    };
-    this.playerTwo = {
-      name: null,
-      selectedNode: null,
-    };
-    this.selectedNode = null;
+    this.playerOne = null;
+    this.playerTwo = null;
     this.state = initialGameState;
   }
 
@@ -28,13 +22,11 @@ class Game {
     // check for victory conditions
   }
 
-  // TODO: Fix this tech debt
   addPlayer(name) {
-    if (name === 'PlayerOne') {
-      console.log('Adding PlayerOne');
-      this.playerOne.name = name;
-    } else if (name === 'PlayerTwo') {
-      this.playerTwo.name = name;
+    if (!this.playerOne) {
+      this.playerOne = new Client(name, 'PlayerOne');
+    } else if (!this.playerTwo) {
+      this.playerTwo = new Client(name, 'PlayerTwo');
     } else {
       console.log('Game is full - cannot add player');
     }
@@ -50,46 +42,19 @@ class Game {
   }
 
   handleNodeClick(node, clicker) {
-    console.log(`${clicker} clicked a node`);
+    let player;
     if (clicker === this.playerOne.name) {
-      if (this.playerOne.selectedNode && node.id !== this.playerOne.selectedNode.id) {
-        const numberOfFighters = this.playerOne.selectedNode.score / 2;
-        this.playerOne.selectedNode.createFighters(numberOfFighters, node);
-        this.deselectNode(clicker);
-      } else {
-        this.selectNode(node, clicker);
-      }
+      player = this.playerOne;
     } else if (clicker === this.playerTwo.name) {
-      if (this.playerTwo.selectedNode && node.id !== this.playerTwo.selectedNode.id) {
-        const numberOfFighters = this.playerTwo.selectedNode.score / 2;
-        this.playerTwo.selectedNode.createFighters(numberOfFighters, node);
-        this.deselectNode(clicker);
-      } else {
-        this.selectNode(node, clicker);
-      }
+      player = this.playerTwo;
     }
-  }
 
-  selectNode(node, clicker) {
-    if (clicker === node.owner) {
-      if (clicker === this.playerOne.name) {
-        console.log('selecting node for playerOne');
-        this.playerOne.selectedNode = node;
-      } else if (clicker === this.playerTwo.name) {
-        console.log('selecting node for playerTwo');
-        this.playerTwo.selectedNode = node;
-      }
-      node.toggleSelectNode();
-    }
-  }
-
-  deselectNode(clicker) {
-    if (clicker === this.playerOne.name) {
-      this.playerOne.selectedNode.toggleSelectNode();
-      this.playerOne.selectedNode = null;
+    if (player.selectedNode && node.id !== player.selectedNode.id) {
+      const numberOfFighters = player.selectedNode.score / 2;
+      player.selectedNode.createFighters(numberOfFighters, node);
+      player.deselectNode();
     } else {
-      this.playerTwo.selectedNode.toggleSelectNode();
-      this.playerTwo.selectedNode = null;
+      player.selectNode(node);
     }
   }
 }

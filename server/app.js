@@ -13,8 +13,6 @@ console.log(`listening on port ${process.env.PORT}...`);
 app.use(express.static('public/'));
 app.use(express.static('client/dist'));
 
-// create game
-// TODO: Refactor to pass width and height of client viewport
 const initialGameState = createInitialGameState();
 const game = new Game(initialGameState);
 

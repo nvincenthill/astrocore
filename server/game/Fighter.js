@@ -18,15 +18,15 @@ class Fighter {
   calcVelocityVectors() {
     const xDiff = this.destX - this.x;
     const yDiff = this.destY - this.y;
-    const speedDelimiter = Math.sqrt(xDiff * xDiff + yDiff * yDiff);
+    const speedDelimiter = Math.sqrt(xDiff * xDiff + yDiff * yDiff) * 1000;
     return [this.velocity * (xDiff / speedDelimiter), this.velocity * (yDiff / speedDelimiter)];
   }
 
   move() {
     if (this.isAlive) {
       // TODO: Refactor for responsive velocity adjustment
-      this.x += this.velocityX / 1500;
-      this.y += this.velocityY / 1500;
+      this.x += this.velocityX;
+      this.y += this.velocityY;
     }
   }
 
