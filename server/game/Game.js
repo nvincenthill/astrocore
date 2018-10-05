@@ -19,7 +19,7 @@ class Game {
       });
     });
 
-    // check for victory conditions
+    // TODO: check for victory conditions
   }
 
   addPlayer(name) {
@@ -50,8 +50,8 @@ class Game {
     }
 
     if (player.selectedNode && node.id !== player.selectedNode.id) {
-      const numberOfFighters = player.selectedNode.score / 2;
-      player.selectedNode.createFighters(numberOfFighters, node);
+      const fighters = player.selectedNode.score / 2;
+      player.selectedNode.createFighters(fighters, node);
       player.deselectNode();
     } else {
       player.selectNode(node);
